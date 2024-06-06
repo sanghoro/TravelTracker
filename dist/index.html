@@ -16,23 +16,40 @@
       <img class="turing-logo" src="./images/turing-logo.png" alt="turing logo">
       <nav>Travel Tracker</nav>
     </div>
-    <button class="LoginButton">Login</button>
+
+    <form class="login-form">
+      <input type="text" placeholder="ID" name="id">
+      <input type="password" placeholder="Password" name="password">
+      <button type="submit" class="LoginButton">Login</button>
   </header>
 
   <main>
     <section class="LoginBoxOne">
-      <h1>Your all-in-one travel website!</h1>
+      <h1>Your all-in-one travel website to plan, track, and enjoy your trips!</h1>
       <p>Please login to fully enjoy the website</p>
     </section>
 
     <section class="LoginBoxTwo">
+      <h2 class="planeImage">✈️</h2>
       <h2>Plan your trips now!</h2>
+      <p> Plan your exciting trips with our website</p>
     </section>
 
     <section class="LoginBoxThree">
-      <h2>Need help with calculations? We're here to help</h2>
+      <h2 class="calcImage">➕➖🟰</h2>
+      <h2>Need help with calculations?</h2>
+      <p> We can help you calculate for your trip expenses </p>
+    </section>
+
+    <section class="LoginBoxFour">
+      <h2 class="glassImage">🔍</h2>
+      <h2>Excellent accessibility for disabled!</h2>
+      <p> Color-blind friendly </p>
     </section>
   </main>
+
+
+
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
