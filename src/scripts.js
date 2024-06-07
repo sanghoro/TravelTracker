@@ -8,4 +8,31 @@ import './css/styles.css';
 import './images/turing-logo.png'
 
 
-console.log('This is the JavaScript entry file - your code begins here.');
+// Global Variables
+const loginButton = document.querySelector('.LoginButton');
+const loginBoxOne = document.querySelector('.LoginBoxOne');
+const loginBoxTwo = document.querySelector('.LoginBoxTwo');
+const loginBoxThree = document.querySelector('.LoginBoxThree');
+const loginBoxFour = document.querySelector('.LoginBoxFour');
+const turingLogo = document.querySelector('.turing-logo')
+
+// EventListeners
+loginButton.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  loginBoxOne.style.display = 'none';
+  loginBoxTwo.style.display = 'none';
+  loginBoxThree.style.display = 'none';
+  loginBoxFour.style.display = 'none';
+});
+
+turingLogo.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  loginBoxOne.style.display = 'block';
+  loginBoxTwo.style.display = 'block';
+  loginBoxThree.style.display = 'block';
+  loginBoxFour.style.display = 'block';
+
+
+})
