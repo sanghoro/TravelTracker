@@ -2,6 +2,10 @@
   display: none;
 }
 
+.title {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -22,13 +26,14 @@ header {
 }
 
 .turing-logo {
-  width: 5vw;
-  height: 5vh;
+  width: 70px;
+  height: 70px;
   padding-left: 50px;
+  cursor: pointer;
 }
 
 .turing-logo:hover {
-  filter: brightness(70%);
+  filter: brightness(150%);
 }
 
 header nav {
@@ -45,7 +50,7 @@ header nav {
 
 .login-form input {
   margin-right: 10px;
-  padding: 5px;
+  padding: 10px;
   border: none;
   border-radius: 5px;
 }
@@ -58,12 +63,20 @@ header nav {
   color: #333;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 17px;
 }
 
 .LoginButton:hover {
   filter: brightness(70%);
   background-color: rgb(133, 222, 252);
   color: rgb(255, 255, 255);
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+h2:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
 }
 
 /* BOXES */
@@ -76,19 +89,21 @@ main {
 }
 
 .LoginBox {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
   box-shadow: rgb(111, 110, 111) 0px 5px 10px;
   border-radius: 10px;
   text-align: center;
   font-size: 16px;
   backdrop-filter: blur(2px);
   display: block;
+  padding: 5px;
 }
 
 .LoginBoxOne {
   grid-row: 2 / 20;
   grid-column: 2 / 10;
   font-size: 20px;
+  padding: 70px;
 }
 
 .LoginBoxTwo {
@@ -98,31 +113,27 @@ main {
 
 .LoginBoxThree {
   grid-row: 21 / 40;
-  grid-column: 5 / 7;
+  grid-column: 4 / 6;
 }
 
 .LoginBoxFour {
+  grid-row: 21 / 40;
+  grid-column: 6 / 8;
+}
+
+.LoginBoxFive {
   grid-row: 21 / 40;
   grid-column: 8 / 10;
 }
 
 .planeImage,
 .calcImage,
+.memoryImage,
 .glassImage {
-  font-size: 30px;
+  font-size: 45px;
 }
 
 /* DASH VIEW */
-/* #dashView {
-  background-color: rgba(255, 255, 255, 0.7);
-  box-shadow: rgb(111, 110, 111) 0px 5px 10px;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 16px;
-  backdrop-filter: blur(2px);
-  display: block;
-} */
-
 .dashNav {
   background-color: rgba(255, 255, 255, 0.7);
   box-shadow: rgb(111, 110, 111) 0px 5px 10px;
@@ -131,6 +142,8 @@ main {
   grid-column: 1 / 2;
   padding-left: 10px;
   margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .dashContents {
@@ -142,4 +155,28 @@ main {
   grid-column: 2 / 11;
   font-size: 20px;
   margin-right: 20px;
+  padding: 30px;
+  text-align: center;
+
+}
+
+.navButs {
+  background-color: rgba(168, 166, 166, 0.2);
+  border: none;
+  color: black;
+  padding: 20px;
+  margin: 7px;
+  margin-top: 25px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 19px;
+  margin-right: 15px;
+  height: 7vh;
+}
+
+.navButs:hover {
+  background-color: rgba(137, 140, 140, 0.2);
+  transform: scale(1.5);
+  transition: transform 0.3s ease;
 }

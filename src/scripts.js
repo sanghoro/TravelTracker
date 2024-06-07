@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const turingLogo = document.querySelector('.turing-logo');
   const loginView = document.getElementById('loginView');
   const dashView = document.getElementById('dashView');
+  const homeButton = document.querySelector('.navButton1');
+  const bookButton = document.querySelector('.navButton2');
+  const pendingButton = document.querySelector('.navButton3');
+  const pastButton = document.querySelector('.navButton4');
+  const aboutButton = document.querySelector('.navButton5');
+  const dashContents = document.querySelector('.dashContents');
 
   // Functions
   function hideLoginView() {
@@ -59,6 +65,56 @@ document.addEventListener('DOMContentLoaded', () => {
     turingLogo.addEventListener('click', (e) => {
       e.preventDefault();
       showLoginView();
+    });
+  }
+
+  if(homeButton) {
+    homeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        dashContents.innerHTML = `
+        <p> Testing Home Contents</P>
+        `;
+    });
+  }
+
+  if(bookButton) {
+    bookButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        dashContents.innerHTML = `
+        <p> Testing Book Contents </P>
+        `;
+    });
+  }
+
+  if(pendingButton) {
+    pendingButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        dashContents.innerHTML = `
+        <p> Testing Pending Contents</P>
+        `;
+    });
+  }
+
+  if(pastButton) {
+    pastButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        dashContents.innerHTML = `
+        <p> Testing Past Contents</P>
+        `;
+    });
+  }
+
+  if (aboutButton) {
+    aboutButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      dashContents.innerHTML = `
+        <h2> Let's Connect! </h2>
+        <br>
+        <p>Website Created By Seong H. Kang</p>
+        <a href="https://github.com/sanghoro" target="_blank">Check out my GitHub</a>
+        <br>
+        <a href="https://www.linkedin.com/in/seong-kang/" target="_blank">Check out my LinkedIn</a>
+      `;
     });
   }
 });
