@@ -1,3 +1,7 @@
+.hide {
+  display: none;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -18,9 +22,13 @@ header {
 }
 
 .turing-logo {
-  width: 5wv;
+  width: 5vw;
   height: 5vh;
   padding-left: 50px;
+}
+
+.turing-logo:hover {
+  filter: brightness(70%);
 }
 
 header nav {
@@ -52,6 +60,12 @@ header nav {
   border-radius: 5px;
 }
 
+.LoginButton:hover {
+  filter: brightness(70%);
+  background-color: rgb(133, 222, 252);
+  color: rgb(255, 255, 255);
+}
+
 /* BOXES */
 main {
   width: 100%;
@@ -61,44 +75,35 @@ main {
   gap: 20px;
 }
 
-.LoginBoxOne {
-  grid-row: 2 / 20;
-  grid-column: 2 / 10;
+.LoginBox {
   background-color: rgba(255, 255, 255, 0.7);
   box-shadow: rgb(111, 110, 111) 0px 5px 10px;
   border-radius: 10px;
   text-align: center;
-  font-size: 30px;
+  font-size: 16px;
+  backdrop-filter: blur(2px);
+  display: block;
+}
+
+.LoginBoxOne {
+  grid-row: 2 / 20;
+  grid-column: 2 / 10;
+  font-size: 20px;
 }
 
 .LoginBoxTwo {
   grid-row: 21 / 40;
   grid-column: 2 / 4;
-  background-color: rgba(255, 255, 255, 0.7);
-  box-shadow: rgb(111, 110, 111) 0px 5px 10px;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
 }
 
 .LoginBoxThree {
   grid-row: 21 / 40;
   grid-column: 5 / 7;
-  background-color: rgba(255, 255, 255, 0.7);
-  box-shadow: rgb(111, 110, 111) 0px 5px 10px;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
 }
 
 .LoginBoxFour {
   grid-row: 21 / 40;
   grid-column: 8 / 10;
-  background-color: rgba(255, 255, 255, 0.7);
-  box-shadow: rgb(111, 110, 111) 0px 5px 10px;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
 }
 
 .planeImage,
