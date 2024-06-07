@@ -16,35 +16,105 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginBoxFour = document.querySelector('.LoginBoxFour');
   const turingLogo = document.querySelector('.turing-logo');
   const loginView = document.getElementById('loginView');
+  const dashView = document.getElementById('dashView');
+  const homeButton = document.querySelector('.navButton1');
+  const bookButton = document.querySelector('.navButton2');
+  const pendingButton = document.querySelector('.navButton3');
+  const pastButton = document.querySelector('.navButton4');
+  const aboutButton = document.querySelector('.navButton5');
+  const dashContents = document.querySelector('.dashContents');
+
+  // Functions
+  function hideLoginView() {
+    loginBoxOne.classList.add('hide');
+    loginBoxTwo.classList.add('hide');
+    loginBoxThree.classList.add('hide');
+    loginBoxFour.classList.add('hide');
+
+    if (loginView) {
+      loginView.classList.add('hide');
+    }
+    if (dashView) {
+      dashView.classList.remove('hide');
+    }
+  }
+
+  function showLoginView() {
+    loginBoxOne.classList.remove('hide');
+    loginBoxTwo.classList.remove('hide');
+    loginBoxThree.classList.remove('hide');
+    loginBoxFour.classList.remove('hide');
+
+    if (loginView) {
+      loginView.classList.remove('hide');
+    }
+    if (dashView) {
+      dashView.classList.add('hide');
+    }
+  }
 
   // EventListeners
   if (loginButton) {
     loginButton.addEventListener('click', (e) => {
       e.preventDefault();
-
-      loginBoxOne.style.display = 'none';
-      loginBoxTwo.style.display = 'none';
-      loginBoxThree.style.display = 'none';
-      loginBoxFour.style.display = 'none';
-
-      if (loginView) {
-        loginView.classList.add('hide');
-      }
+      hideLoginView();
     });
   }
 
   if (turingLogo) {
     turingLogo.addEventListener('click', (e) => {
       e.preventDefault();
+      showLoginView();
+    });
+  }
 
-      loginBoxOne.style.display = 'block';
-      loginBoxTwo.style.display = 'block';
-      loginBoxThree.style.display = 'block';
-      loginBoxFour.style.display = 'block';
+  if(homeButton) {
+    homeButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        dashContents.innerHTML = `
+        <p> Testing Home Contents</P>
+        `;
+    });
+  }
 
-      if (loginView) {
-        loginView.classList.remove('hide');
-      }
+  if(bookButton) {
+    bookButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        dashContents.innerHTML = `
+        <p> Testing Book Contents </P>
+        `;
+    });
+  }
+
+  if(pendingButton) {
+    pendingButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        dashContents.innerHTML = `
+        <p> Testing Pending Contents</P>
+        `;
+    });
+  }
+
+  if(pastButton) {
+    pastButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        dashContents.innerHTML = `
+        <p> Testing Past Contents</P>
+        `;
+    });
+  }
+
+  if (aboutButton) {
+    aboutButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      dashContents.innerHTML = `
+        <h2> Let's Connect! </h2>
+        <br>
+        <p>Website Created By Seong H. Kang</p>
+        <a href="https://github.com/sanghoro" target="_blank">Check out my GitHub</a>
+        <br>
+        <a href="https://www.linkedin.com/in/seong-kang/" target="_blank">Check out my LinkedIn</a>
+      `;
     });
   }
 });

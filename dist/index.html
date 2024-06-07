@@ -14,7 +14,7 @@
   <header>
     <div>
       <img class="turing-logo" src="./images/turing-logo.png" alt="turing logo">
-      <nav>Travel Tracker</nav>
+      <nav class="title">Travel Tracker</nav>
     </div>
     <form class="login-form">
       <input type="text" placeholder="ID" name="id">
@@ -25,27 +25,50 @@
 
   <main id="loginView">
     <section class="LoginBox LoginBoxOne">
-      <h1>Your all-in-one travel website to plan, track, and enjoy your trips!</h1>
+      <h2>Your all-in-one travel website to plan, track, and enjoy your trips!</h2>
       <p>Please login to fully enjoy the website</p>
     </section>
 
     <section class="LoginBox LoginBoxTwo">
       <h2 class="planeImage">✈️</h2>
-      <h2>Plan your trips now!</h2>
-      <p>Plan your exciting trips with our website</p>
+      <h2>Start planning your adventure today!</h2>
+      <p>Embark on your thrilling journeys with us online</p>
     </section>
 
     <section class="LoginBox LoginBoxThree">
       <h2 class="calcImage">➕➖🟰</h2>
       <h2>Need help with calculations?</h2>
-      <p>We can help you calculate for your trip expenses</p>
+      <p>We can help you track and manage your travel costs!</p>
     </section>
 
     <section class="LoginBox LoginBoxFour">
+      <h2 class="memoryImage">🌄</h2>
+      <h2>Explore your <br>
+        journey history!</h2>
+      <p>Nostalgic for cherished moments? We're here
+        to guide you back.</p>
+    </section>
+
+    <section class="LoginBox LoginBoxFive">
       <h2 class="glassImage">🔍</h2>
       <h2>Excellent accessibility for disabled!</h2>
-      <p>Color-blind friendly</p>
+      <p>Color-blind friendly website</p>
     </section>
+  </main>
+
+  <!-- dashView -->
+  <main id="dashView" class="hide">
+
+    <section class="dashNav">
+      <button class="navButs navButton1">🏠 Home</button>
+      <button class="navButs navButton2">📒 Book a Trip</button>
+      <button class="navButs navButton3">✈️ Pending Trips</button>
+      <button class="navButs navButton4">🕦 Past Trips</button>
+      <button class="navButs navButton5">🙌 About</button>
+    </section>
+
+    <section class="dashContents"></section>
+
   </main>
 
   <script src="bundle.js"></script>
