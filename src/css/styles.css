@@ -2,6 +2,10 @@
   display: none;
 }
 
+.hidden {
+  display: none;
+}
+
 .title {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -53,9 +57,11 @@ header nav {
   padding: 10px;
   border: none;
   border-radius: 5px;
+  box-shadow: rgb(111, 110, 111) 0px 5px 20px;
 }
 
-.LoginButton {
+.LoginButton,
+.LogOutButton {
   margin-right: 30px;
   padding: 10px;
   border: none;
@@ -64,7 +70,9 @@ header nav {
   cursor: pointer;
   border-radius: 5px;
   font-size: 17px;
+  box-shadow: rgb(111, 110, 111) 0px 15px 40px;
 }
+
 
 .LoginButton:hover {
   filter: brightness(70%);
@@ -100,7 +108,7 @@ main {
 }
 
 .LoginBox:hover {
-  filter: brightness(125%);
+  filter: brightness(145%);
 }
 
 .LoginBoxOne {

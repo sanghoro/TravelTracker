@@ -1,11 +1,17 @@
-import { fetchAllUserData, fetchSingleUserData } from "./apiCalls.js";
+import { fetchAllDestinationData, fetchAllTripsData, fetchAllUserData, fetchSingleUserData } from "./apiCalls.js";
+
+let allUsersData = [];
 
 export const fetchAllData = () => {
-  Promise.all([fetchAllUserData(), fetchSingleUserData(id)])
-    .then(([allUserDataResult, singleUserDataResult]) => {
-      console.log('All Users data fetched successfully:', allUserDataResult);
-      console.log('Data fetched successfully:', singleUserDataResult)
-      return allUserDataResult
+  Promise.all([fetchAllUserData(), fetchSingleUserData(), fetchAllTripsData(), fetchAllDestinationData()])
+    .then(([allUserDataResult, singleUserDataResult, allTripsDataResult, allDestinationDataResult]) => {
+      // console.log('All Users data fetched successfully:', allUserDataResult);
+      // console.log('Single Users data fetched successfully:', singleUserDataResult)
+      // console.log('All Trips Data fetched successfully:', allTripsDataResult)
+      // console.log('All Destination Data fetched successfully:', allDestinationDataResult)
+      
+      allUsersData = allUserDataResult;
+
     })
     .catch(error => {
       console.error("Error fetching data:", error);
@@ -13,4 +19,7 @@ export const fetchAllData = () => {
 };
 
 
+//functions invokation
 fetchAllData();
+
+export{allUsersData};
