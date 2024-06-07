@@ -99,6 +99,10 @@ main {
   padding: 5px;
 }
 
+.LoginBox:hover {
+  filter: brightness(125%);
+}
+
 .LoginBoxOne {
   grid-row: 2 / 20;
   grid-column: 2 / 10;
@@ -157,14 +161,13 @@ main {
   margin-right: 20px;
   padding: 30px;
   text-align: center;
-
 }
 
 .navButs {
-  background-color: rgba(168, 166, 166, 0.2);
+  background-color: rgba(168, 166, 166, 0.1);
   border: none;
   color: black;
-  padding: 20px;
+  padding: 10px;
   margin: 7px;
   margin-top: 25px;
   text-align: center;
@@ -175,8 +178,30 @@ main {
   height: 7vh;
 }
 
+.greeting {
+  animation: fadeIn 2s;
+  font-family: "Pacifico", cursive;
+  font-size: 60px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.greeting {
+  color: #333;
+  animation: fadeIn 3s;
+}
+
 .navButs:hover {
-  background-color: rgba(137, 140, 140, 0.2);
+  background-color: rgba(247, 247, 247, 0.2);
   transform: scale(1.5);
   transition: transform 0.3s ease;
+  filter: brightness(120%);
 }
