@@ -1,3 +1,7 @@
+.hide {
+  display: none;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -78,6 +82,7 @@ main {
   text-align: center;
   font-size: 16px;
   backdrop-filter: blur(2px);
+  display: block;
 }
 
 .LoginBoxOne {
