@@ -111,3 +111,35 @@ main {
 .glassImage {
   font-size: 30px;
 }
+
+/* DASH VIEW */
+/* #dashView {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: rgb(111, 110, 111) 0px 5px 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 16px;
+  backdrop-filter: blur(2px);
+  display: block;
+} */
+
+.dashNav {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: rgb(111, 110, 111) 0px 5px 10px;
+  border-radius: 10px;
+  grid-row: 2 / 40;
+  grid-column: 1 / 2;
+  padding-left: 10px;
+  margin-left: 20px;
+}
+
+.dashContents {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: rgb(111, 110, 111) 0px 5px 10px;
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  grid-row: 2 / 40;
+  grid-column: 2 / 11;
+  font-size: 20px;
+  margin-right: 20px;
+}

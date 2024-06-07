@@ -16,35 +16,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const loginBoxFour = document.querySelector('.LoginBoxFour');
   const turingLogo = document.querySelector('.turing-logo');
   const loginView = document.getElementById('loginView');
+  const dashView = document.getElementById('dashView');
+
+  // Functions
+  function hideLoginView() {
+    loginBoxOne.classList.add('hide');
+    loginBoxTwo.classList.add('hide');
+    loginBoxThree.classList.add('hide');
+    loginBoxFour.classList.add('hide');
+
+    if (loginView) {
+      loginView.classList.add('hide');
+    }
+    if (dashView) {
+      dashView.classList.remove('hide');
+    }
+  }
+
+  function showLoginView() {
+    loginBoxOne.classList.remove('hide');
+    loginBoxTwo.classList.remove('hide');
+    loginBoxThree.classList.remove('hide');
+    loginBoxFour.classList.remove('hide');
+
+    if (loginView) {
+      loginView.classList.remove('hide');
+    }
+    if (dashView) {
+      dashView.classList.add('hide');
+    }
+  }
 
   // EventListeners
   if (loginButton) {
     loginButton.addEventListener('click', (e) => {
       e.preventDefault();
-
-      loginBoxOne.style.display = 'none';
-      loginBoxTwo.style.display = 'none';
-      loginBoxThree.style.display = 'none';
-      loginBoxFour.style.display = 'none';
-
-      if (loginView) {
-        loginView.classList.add('hide');
-      }
+      hideLoginView();
     });
   }
 
   if (turingLogo) {
     turingLogo.addEventListener('click', (e) => {
       e.preventDefault();
-
-      loginBoxOne.style.display = 'block';
-      loginBoxTwo.style.display = 'block';
-      loginBoxThree.style.display = 'block';
-      loginBoxFour.style.display = 'block';
-
-      if (loginView) {
-        loginView.classList.remove('hide');
-      }
+      showLoginView();
     });
   }
 });
