@@ -11,4 +11,6 @@ export const fetchAllData = () => {
       console.error("Error fetching data:", error);
     });
 };
+
+
 fetchAllData();
