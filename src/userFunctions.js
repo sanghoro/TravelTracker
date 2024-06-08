@@ -24,7 +24,7 @@ export const handleLogin = (username, password) => {
   }
 }
 
-//past trips(?)
+//Functions
 
 export const pastTrips = (userId) => {
   const tripData = allTripData.filter(user => user.userID === userId)

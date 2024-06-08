@@ -2,8 +2,9 @@
 // Do not delete or rename this file ********
 
 import './css/styles.css';
+import { bookingCalculationForm } from './domUpdates.js';
 import './images/turing-logo.png';
-import { fetchAllData } from './initializeDatas';
+import { allDestinationData, fetchAllData } from './initializeDatas';
 import { handleLogin } from './userFunctions.js';
 import { pastTrips, pendingTrips } from './userFunctions.js';
 
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     homeButton.addEventListener('click', (e) => {
       e.preventDefault();
       dashContents.innerHTML = `
-        <p> Testing Home Contents</p>
+        <h2> Testing Home Contents</h2>
       `;
     });
   }
@@ -95,8 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
     bookButton.addEventListener('click', (e) => {
       e.preventDefault();
       dashContents.innerHTML = `
-        <p> Testing Book Contents </p>
+        <h2> Testing Book Contents</h2>
       `;
+      bookingCalculationForm(allDestinationData);
     });
   }
 
@@ -131,4 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     });
   }
+
+  
+
 });
+

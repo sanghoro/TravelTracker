@@ -1,3 +1,4 @@
+//Fetch
 export function fetchAllUserData() {
     return fetch("http://localhost:3001/api/v1/travelers")
       .then(response => {
@@ -43,3 +44,17 @@ export function fetchAllUserData() {
       console.error('Warning! Problem with fetching all trips datas:', error);
     });
   }
+
+
+  //Post
+  export function addNewTrip(newTripData) {
+    return fetch('http://localhost:3001/api/v1/trips',{
+       method:'POST',
+       body: JSON.stringify(newTripData),
+       headers: {
+        'Content-Type': 'application/json'
+       }
+     })
+     .then(response => response.json())
+     .then(data => console.log('added trip>>', data))
+   }
