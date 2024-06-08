@@ -1,6 +1,6 @@
-import { fetchSingleUserData } from './apiCalls';
-import { allUsersData } from './initializeDatas';
-import { hideLoginSection, greetUser } from './domUpdates.js';
+import { fetchAllTripsData, fetchSingleUserData } from './apiCalls';
+import { allUsersData, allTripData, allDestinationData, allSingleUserData } from './initializeDatas';
+import { hideLoginSection, greetUser, viewPastTrips } from './domUpdates.js';
 import { hideLoginView, showLoginView } from './scripts.js';
 
 export const handleLogin = (username, password) => {
@@ -8,16 +8,29 @@ export const handleLogin = (username, password) => {
     alert('Invalid password');
     return;
   }
-
+  
   const userId = Number(username.slice(8));
+  console.log('userId>>', userId)
   const userData = allUsersData.find(user => user.id === userId);
-  console.log('logged in userData', userData)
+  console.log('userData>>', userData)
+  
   if (userData) {
     hideLoginView();
     hideLoginSection();
     greetUser(userData.name)
+    fetchSingleUserData(userId)
   } else {
     alert('Invalid username');
   }
 }
+
+//past trips(?)
+
+export const pastTrips = (userId) => {
+  const tripData = allTripData.filter(user => user.userID === userId)
+    console.log('tripData>>>', tripData)
+
+viewPastTrips(tripData);
+}
+
 

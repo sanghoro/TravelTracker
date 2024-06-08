@@ -5,6 +5,8 @@ import './css/styles.css';
 import './images/turing-logo.png';
 import { fetchAllData } from './initializeDatas';
 import { handleLogin } from './userFunctions.js';
+import { pastTrips } from './userFunctions.js';
+
 
 // Global Variables
 const loginBoxOne = document.querySelector('.LoginBoxOne');
@@ -110,9 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pastButton) {
     pastButton.addEventListener('click', (e) => {
       e.preventDefault();
-      dashContents.innerHTML = `
-        <p> Testing Past Contents</p>
-      `;
+      const loginID = document.querySelector('input[name="id"]').value;
+      const userId = Number(loginID.slice(8));
+      pastTrips(userId);
     });
   }
 

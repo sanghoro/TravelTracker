@@ -11,14 +11,14 @@ export function fetchAllUserData() {
       });
   }
 
-  export function fetchSingleUserData(id){
+  export function fetchSingleUserData(id) {
     return fetch(`http://localhost:3001/api/v1/travelers/${id}`)
-    .then(response => {
-        return response.json();
-    })
-    .then(data=> data)
-    .catch(error => {
-        console.error('Warning! Problem with fetching single user datas:', error);
+      .then(response => response.json())
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        console.error('Warning! Problem with fetching single user data:', error);
       });
   }
 
