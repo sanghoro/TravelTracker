@@ -47,14 +47,19 @@ export function fetchAllUserData() {
 
 
   //Post
-  export function addNewTrip(newTripData) {
-    return fetch('http://localhost:3001/api/v1/trips',{
-       method:'POST',
-       body: JSON.stringify(newTripData),
-       headers: {
+  export function addNewTrip(trip) {
+    return fetch('http://localhost:3001/api/v1/trips', {
+      method: 'POST',
+      headers: {
         'Content-Type': 'application/json'
-       }
-     })
-     .then(response => response.json())
-     .then(data => console.log('added trip>>', data))
-   }
+      },
+      body: JSON.stringify(trip)
+    })
+    .then(response => response.json())
+    .then(data => {
+      return data;
+    })
+    .catch(error => {
+      console.error('Error adding new trip:', error);
+    });
+  }

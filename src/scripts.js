@@ -1,12 +1,14 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
 
+import { addNewTrip } from './apiCalls.js';
 import './css/styles.css';
-import { bookingCalculationForm } from './domUpdates.js';
+import { showAddedNewTrip, bookingCalculationForm, viewPendingTrips } from './domUpdates.js';
 import './images/turing-logo.png';
-import { allDestinationData, fetchAllData } from './initializeDatas';
+import { allDestinationData, fetchAllData, allTripData } from './initializeDatas';
 import { handleLogin } from './userFunctions.js';
-import { pastTrips, pendingTrips } from './userFunctions.js';
+import { pastTrips, pendingTrips, currentUser } from './userFunctions.js';
+
 
 
 // Global Variables
@@ -71,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert("Please enter your password");
       } else {
         handleLogin(loginID, loginPW);
+        
       }
     });
   }
@@ -83,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //   });
   // }
 
+  //NAV BAR ICONS
   if (homeButton) {
     homeButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -95,10 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bookButton) {
     bookButton.addEventListener('click', (e) => {
       e.preventDefault();
-      dashContents.innerHTML = `
-        <h2> Testing Book Contents</h2>
-      `;
       bookingCalculationForm(allDestinationData);
+      handleTripBooking();
     });
   }
 
@@ -133,8 +135,47 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     });
   }
-
-  
-
 });
+  
+//Book-A-Trip
+function handleTripBooking() {
+  const bookTripButton = document.querySelector('.book-trip-button');
+  
+  if (bookTripButton) {
+    bookTripButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      submitNewTrip();
+    });
+  }
+}
 
+function submitNewTrip() {
+  const date = document.querySelector('.trip-date').value;
+  const duration = document.querySelector('.duration').value;
+  const travelers = document.querySelector('.travelers').value;
+  const destinationName = document.querySelector('.destinations').value;
+
+  const destination = allDestinationData.find(place => place.destination === destinationName);
+  const destinationID = destination.id;
+
+  const newTrip = {
+    id: Date.now().toString(),
+    userID: currentUser.id,
+    destinationID: destinationID,
+    travelers: Number(travelers),
+    date: date,
+    duration: Number(duration),
+    status: 'pending',
+    suggestedActivities: []
+  };
+
+  addNewTrip(newTrip).then(data => {
+    if (data) {
+      console.log('New trip added>>>>>>', data);
+      allTripData.push(newTrip);
+      const userId = currentUser.id;
+      const tripData = allTripData.filter(trip => trip.userID === userId && trip.status === 'pending');
+      viewPendingTrips(tripData);
+    }
+  });
+}

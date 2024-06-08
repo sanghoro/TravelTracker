@@ -11,7 +11,6 @@ export const hideLoginSection = () => {
     loginButton.classList.add('hide');
     logoutButton.classList.remove('hidden');
   };
-  
 
 export const greetUser = (username) => {
     const greetingElement = document.querySelector('.greeting');
@@ -50,19 +49,83 @@ export const viewPastTrips = (trips) => {
   });
 };
 
+export const bookingCalculationForm = (destinations) => {
+  const dashContents = document.querySelector('.dashContents');
+
+  let destinationOptions = [];
+  allDestinationData.forEach(place => {
+    destinationOptions.push(`<option>${place.destination}</option>`);
+  })
+
+  let sortedDestinationOptions = destinationOptions.sort()
+
+  dashContents.innerHTML = `
+   <h2 class="title-center">Book Your Trips</h2>
+    <form class="booking-form">
+      <div>
+        <label for="trip-date">Select Date:</label>
+        <input type="date" class="trip-date" required>
+      </div>
+      <div>
+        <label for="duration">Duration (days):</label>
+        <input type="number" class="duration" min="1" required>
+      </div>
+      <div>
+        <label for="travelers">Number of Travelers:</label>
+        <input type="number" class="travelers" min="1" required>
+      </div>
+      <div>
+        <label for="destinations">Choose Destination:</label>
+        <select class="destinations" required>
+          ${sortedDestinationOptions}
+        </select>
+      </div>
+      <button type="submit" class="book-trip-button">Book Trip</button>
+    </form>
+  `;
+}
+
+export const showAddedNewTrip = (trip) => {
+  let tripContainer = document.querySelector('.pending-trip-container');
+  
+  if (!tripContainer) {
+    console.error('Pending trip container not found');
+    return;
+  }
+
+  const destination = allDestinationData.find(place => place.id === trip.destinationID);
+  let destinationPic = '';
+
+  if (destination) {
+    destinationPic = destination.image;
+  }
+
+  const tripElement = document.createElement('div');
+  tripElement.classList.add('trip');
+  tripElement.innerHTML = `
+    <img src="${destinationPic}" class="destination-pic" alt="Destination Picture">
+    <p>Date: ${trip.date}</p>
+    <p>Duration: ${trip.duration} days</p>
+    <p>Status: ${trip.status}</p>
+  `;
+  tripContainer.appendChild(tripElement);
+
+  alert('New trip added successfully!');
+};
+
 export const viewPendingTrips = (trips) => {
   const dashContents = document.querySelector('.dashContents');
   
   dashContents.innerHTML = `
     <h2 class="title-center">Pending Trips</h2>
-    <div class="trip-container"></div>
+    <div class="pending-trip-container"></div>
   `;
   
-  const tripContainer = dashContents.querySelector('.trip-container');
+  const tripContainer = dashContents.querySelector('.pending-trip-container');
   const pendingTrips = trips.filter(trip => trip.status === 'pending');
 
   if (pendingTrips.length === 0) {
-    tripContainer.innerHTML = '<p>There are currently no pending travels <br> Book a trip today!</p>';
+    tripContainer.innerHTML = '<p>There are currently no pending travels <br> Book a trip today! </p>';
     return;
   }
 
@@ -85,40 +148,3 @@ export const viewPendingTrips = (trips) => {
     tripContainer.appendChild(tripElement);
   });
 }
-
-export const bookingCalculationForm = (destinations) => {
-  const dashContents = document.querySelector('.dashContents');
-
-  let destinationOptions = [];
-  allDestinationData.forEach(place => {
-    destinationOptions.push(`<option>${place.destination}</option>`);
-  })
-
-  let sortedDestinationOptions = destinationOptions.sort()
-
-  dashContents.innerHTML = `
-   <h2 class="title-center">Book Your Trips</h2>
-    <form class="booking-form">
-      <div>
-        <label for="trip-date">Select Date:</label>
-        <input type="date" id="trip-date" name="trip-date" required>
-      </div>
-      <div>
-        <label for="duration">Duration (days):</label>
-        <input type="number" id="duration" name="duration" min="1" required>
-      </div>
-      <div>
-        <label for="travelers">Number of Travelers:</label>
-        <input type="number" id="travelers" name="travelers" min="1" required>
-      </div>
-      <div>
-        <label for="destination">Choose Destination:</label>
-        <select id="destination" name="destination" required>
-          ${sortedDestinationOptions}
-        </select>
-      </div>
-      <button type="submit" class="book-trip-button">Book Trip</button>
-    </form>
-  `;
-}
-

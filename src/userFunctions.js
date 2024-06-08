@@ -1,8 +1,14 @@
+//imports
 import { fetchAllTripsData, fetchSingleUserData } from './apiCalls';
 import { allUsersData, allTripData, allDestinationData, allSingleUserData } from './initializeDatas';
 import { hideLoginSection, greetUser, viewPastTrips, viewPendingTrips } from './domUpdates.js';
 import { hideLoginView, showLoginView } from './scripts.js';
 
+//global variables
+let currentUser = null;
+
+
+//functions
 export const handleLogin = (username, password) => {
   if (password !== 'travel') {
     alert('Invalid password');
@@ -15,6 +21,7 @@ export const handleLogin = (username, password) => {
   console.log('userData>>', userData)
   
   if (userData) {
+    currentUser = userData
     hideLoginView();
     hideLoginSection();
     greetUser(userData.name)
@@ -23,8 +30,6 @@ export const handleLogin = (username, password) => {
     alert('Invalid username');
   }
 }
-
-//Functions
 
 export const pastTrips = (userId) => {
   const tripData = allTripData.filter(user => user.userID === userId)
@@ -37,3 +42,9 @@ export const pendingTrips = (userId) => {
 }
 
 
+
+
+
+
+//Exports
+export { currentUser };
