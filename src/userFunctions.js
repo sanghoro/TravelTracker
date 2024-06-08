@@ -1,6 +1,6 @@
 import { fetchAllTripsData, fetchSingleUserData } from './apiCalls';
 import { allUsersData, allTripData, allDestinationData, allSingleUserData } from './initializeDatas';
-import { hideLoginSection, greetUser, viewPastTrips } from './domUpdates.js';
+import { hideLoginSection, greetUser, viewPastTrips, viewPendingTrips } from './domUpdates.js';
 import { hideLoginView, showLoginView } from './scripts.js';
 
 export const handleLogin = (username, password) => {
@@ -28,9 +28,12 @@ export const handleLogin = (username, password) => {
 
 export const pastTrips = (userId) => {
   const tripData = allTripData.filter(user => user.userID === userId)
-    console.log('tripData>>>', tripData)
+  viewPastTrips(tripData);
+}
 
-viewPastTrips(tripData);
+export const pendingTrips = (userId) => {
+  const tripData = allTripData.filter(user => user.userID === userId)
+  viewPendingTrips(tripData);
 }
 
 
