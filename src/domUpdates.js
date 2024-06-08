@@ -1,3 +1,5 @@
+import { allDestinationData } from "./initializeDatas";
+
 export const hideLoginSection = () => {
     const idInput = document.querySelector('.id');
     const pwInput = document.querySelector('.password');
@@ -15,4 +17,32 @@ export const greetUser = (username) => {
     const greetingElement = document.querySelector('.greeting');
     greetingElement.innerHTML = `Welcome <br> ${username}!`;
 }
+export const viewPastTrips = (trips) => {
+  const dashContents = document.querySelector('.dashContents');
+  
+  dashContents.innerHTML = `
+    <h2 class="title-center">Past Trips</h2>
+    <div class="trip-container"></div>
+  `;
+  
+  const tripContainer = dashContents.querySelector('.trip-container');
+  
+  trips.forEach((trip) => {
+    const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
+    let destinationPic = '';
 
+    if (destination) {
+      destinationPic = destination.image;
+    } 
+
+    const tripElement = document.createElement('div');
+    tripElement.classList.add('trip');
+    tripElement.innerHTML = `
+      <img src="${destinationPic}" class="destination-pic" alt="Destination Picture">
+      <p>Date: ${trip.date}</p>
+      <p>Duration: ${trip.duration} days</p>
+      <p>Status: ${trip.status}</p>
+    `;
+    tripContainer.appendChild(tripElement);
+  });
+};
