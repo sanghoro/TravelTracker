@@ -1,3 +1,5 @@
+// i'm strong promise.all and dataset related stuff here
+
 import { fetchAllDestinationData, fetchAllTripsData, fetchAllUserData, fetchSingleUserData } from "./apiCalls.js";
 
 let allUsersData = [];
@@ -6,11 +8,8 @@ let allDestinationData = [];
 let allSingleUserData = [];
 
 export const fetchAllData = () => {
-  Promise.all([fetchAllUserData(), fetchSingleUserData(), fetchAllTripsData(), fetchAllDestinationData()])
+  Promise.all([fetchAllUserData(), fetchSingleUserData(1), fetchAllTripsData(), fetchAllDestinationData()])
     .then(([allUserDataResult, singleUserDataResult, allTripsDataResult, allDestinationDataResult]) => {
-      console.log('All Users data fetched successfully:', allUserDataResult);
-      console.log('All Trips Data fetched successfully:', allTripsDataResult)
-      console.log('All Destination Data fetched successfully:', allDestinationDataResult);
       
       allUsersData = allUserDataResult;
       allTripData = allTripsDataResult;
@@ -27,6 +26,7 @@ export const fetchAllData = () => {
 //functions invokation
 fetchAllData();
 
+//exports
 export{
   allUsersData,
   allTripData,

@@ -1,12 +1,15 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
 
-import './css/styles.css';
-import './images/turing-logo.png';
-import { fetchAllData } from './initializeDatas';
-import { handleLogin } from './userFunctions.js';
-import { pastTrips } from './userFunctions.js';
+//I'm storing all buttons related functions in here
 
+import { addNewTrip } from './apiCalls.js';
+import './css/styles.css';
+import { bookingCalculationForm, displayExpenses, viewPendingTrips } from './domUpdates.js';
+import './images/turing-logo.png';
+import { allDestinationData, fetchAllData, allTripData } from './initializeDatas';
+import { calculateEstimate, handleLogin } from './userFunctions.js';
+import { pastTrips, pendingTrips, currentUser } from './userFunctions.js';
 
 // Global Variables
 const loginBoxOne = document.querySelector('.LoginBoxOne');
@@ -70,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert("Please enter your password");
       } else {
         handleLogin(loginID, loginPW);
+        
       }
     });
   }
@@ -82,30 +86,31 @@ document.addEventListener('DOMContentLoaded', () => {
   //   });
   // }
 
+  //NAV BAR ICONS
   if (homeButton) {
     homeButton.addEventListener('click', (e) => {
       e.preventDefault();
-      dashContents.innerHTML = `
-        <p> Testing Home Contents</p>
-      `;
+      const loginID = document.querySelector('input[name="id"]').value;
+      const userId = Number(loginID.slice(8));
+      displayExpenses(userId);
     });
   }
 
   if (bookButton) {
     bookButton.addEventListener('click', (e) => {
       e.preventDefault();
-      dashContents.innerHTML = `
-        <p> Testing Book Contents </p>
-      `;
+      bookingCalculationForm(allDestinationData);
+      getEstimate();
+      handleTripBooking();
     });
   }
 
   if (pendingButton) {
     pendingButton.addEventListener('click', (e) => {
       e.preventDefault();
-      dashContents.innerHTML = `
-        <p> Testing Pending Contents</p>
-      `;
+      const loginID = document.querySelector('input[name="id"]').value;
+      const userId = Number(loginID.slice(8));
+      pendingTrips(userId);
     });
   }
 
@@ -125,10 +130,66 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2> Let's Connect! </h2>
         <br>
         <p>Website Created By Seong H. Kang</p>
-        <a href="https://github.com/sanghoro" target="_blank">Check out my GitHub</a>
+        <a href="https://github.com/sanghoro" target="_blank"> Check out my Github!
+        </a>
         <br>
-        <a href="https://www.linkedin.com/in/seong-kang/" target="_blank">Check out my LinkedIn</a>
+        <a href="https://www.linkedin.com/in/seong-kang/" target="_blank"> Check out my LinkedIn!
+        </a>
       `;
     });
   }
 });
+  
+//Book-A-Trip
+function handleTripBooking() {
+  const bookTripButton = document.querySelector('.book-trip-button');
+  
+  if (bookTripButton) {
+    bookTripButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      submitNewTrip();
+    });
+  }
+}
+function getEstimate(){
+  const estimateButton = document.querySelector('.book-trip-estimate-button')
+
+  if(estimateButton){
+    estimateButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      calculateEstimate();
+    })
+  }
+}
+
+function submitNewTrip() {
+  const date = document.querySelector('.trip-date').value;
+  const duration = document.querySelector('.duration').value;
+  const travelers = document.querySelector('.travelers').value;
+  const destinationName = document.querySelector('.destinations').value;
+
+  const destination = allDestinationData.find(place => place.destination === destinationName);
+  const destinationID = destination.id;
+
+  const formattedDate = date.replace(/-/g, '/');
+
+  const newTrip = {
+    id: Date.now().toString(),
+    userID: currentUser.id,
+    destinationID: destinationID,
+    travelers: Number(travelers),
+    date: formattedDate,
+    duration: Number(duration),
+    status: 'pending',
+    suggestedActivities: []
+  };
+
+  addNewTrip(newTrip).then(data => {
+    if (data) {
+      allTripData.push(newTrip);
+      const userId = currentUser.id;
+      const tripData = allTripData.filter(trip => trip.userID === userId && trip.status === 'pending');
+      viewPendingTrips(tripData);
+    }
+  });
+}

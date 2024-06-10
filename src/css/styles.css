@@ -82,6 +82,12 @@ header nav {
   transition: transform 0.3s ease;
 }
 
+.LogOutButton:hover {
+  filter: brightness(120%);
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
 h2:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease;
@@ -239,7 +245,7 @@ main {
 }
 
 .trip:hover {
-  filter: brightness(120%)
+  filter: brightness(110%)
 }
 
 .destination-pic {
@@ -247,4 +253,43 @@ main {
   height: auto;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+
+/* Book-a-Trip */
+.booking-form {
+  margin-top: 50px;
+  font-size: 20px;
+}
+
+.trip-date,
+.duration,
+.travelers,
+.destinations {
+  font-size: 18px;
+  font-weight: 400;
+  border-radius: 6px;
+  border: none;
+}
+
+.book-trip-button {
+  margin-top: 20px;
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: rgb(111, 110, 111) 0px 5px 10px;
+}
+
+.book-trip-button:hover {
+  filter: brightness(125%);
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+/*Pending Trip*/
+.pending-trip-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
