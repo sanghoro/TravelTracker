@@ -1,15 +1,15 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
 
+//I'm storing all buttons related functions in here
+
 import { addNewTrip } from './apiCalls.js';
 import './css/styles.css';
-import { showAddedNewTrip, bookingCalculationForm, viewPendingTrips } from './domUpdates.js';
+import { bookingCalculationForm, displayExpenses, viewPendingTrips } from './domUpdates.js';
 import './images/turing-logo.png';
 import { allDestinationData, fetchAllData, allTripData } from './initializeDatas';
-import { handleLogin } from './userFunctions.js';
+import { calculateEstimate, handleLogin } from './userFunctions.js';
 import { pastTrips, pendingTrips, currentUser } from './userFunctions.js';
-
-
 
 // Global Variables
 const loginBoxOne = document.querySelector('.LoginBoxOne');
@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (homeButton) {
     homeButton.addEventListener('click', (e) => {
       e.preventDefault();
-      dashContents.innerHTML = `
-        <h2> Testing Home Contents</h2>
-      `;
+      const loginID = document.querySelector('input[name="id"]').value;
+      const userId = Number(loginID.slice(8));
+      displayExpenses(userId);
     });
   }
 
@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bookButton.addEventListener('click', (e) => {
       e.preventDefault();
       bookingCalculationForm(allDestinationData);
+      getEstimate();
       handleTripBooking();
     });
   }
@@ -129,9 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2> Let's Connect! </h2>
         <br>
         <p>Website Created By Seong H. Kang</p>
-        <a href="https://github.com/sanghoro" target="_blank">Check out my GitHub</a>
+        <a href="https://github.com/sanghoro" target="_blank"> Check out my Github!
+        </a>
         <br>
-        <a href="https://www.linkedin.com/in/seong-kang/" target="_blank">Check out my LinkedIn</a>
+        <a href="https://www.linkedin.com/in/seong-kang/" target="_blank"> Check out my LinkedIn!
+        </a>
       `;
     });
   }
@@ -148,6 +151,16 @@ function handleTripBooking() {
     });
   }
 }
+function getEstimate(){
+  const estimateButton = document.querySelector('.book-trip-estimate-button')
+
+  if(estimateButton){
+    estimateButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      calculateEstimate();
+    })
+  }
+}
 
 function submitNewTrip() {
   const date = document.querySelector('.trip-date').value;
@@ -158,12 +171,14 @@ function submitNewTrip() {
   const destination = allDestinationData.find(place => place.destination === destinationName);
   const destinationID = destination.id;
 
+  const formattedDate = date.replace(/-/g, '/');
+
   const newTrip = {
     id: Date.now().toString(),
     userID: currentUser.id,
     destinationID: destinationID,
     travelers: Number(travelers),
-    date: date,
+    date: formattedDate,
     duration: Number(duration),
     status: 'pending',
     suggestedActivities: []
@@ -171,7 +186,6 @@ function submitNewTrip() {
 
   addNewTrip(newTrip).then(data => {
     if (data) {
-      console.log('New trip added>>>>>>', data);
       allTripData.push(newTrip);
       const userId = currentUser.id;
       const tripData = allTripData.filter(trip => trip.userID === userId && trip.status === 'pending');

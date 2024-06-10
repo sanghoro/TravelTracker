@@ -1,4 +1,8 @@
+//only DOM updating functions here
+
 import { allDestinationData } from "./initializeDatas";
+import { addAllExpense } from "./userFunctions";
+
 
 export const hideLoginSection = () => {
     const idInput = document.querySelector('.id');
@@ -49,7 +53,7 @@ export const viewPastTrips = (trips) => {
   });
 };
 
-export const bookingCalculationForm = (destinations) => {
+export const bookingCalculationForm = () => {
   const dashContents = document.querySelector('.dashContents');
 
   let destinationOptions = [];
@@ -81,37 +85,10 @@ export const bookingCalculationForm = (destinations) => {
         </select>
       </div>
       <button type="submit" class="book-trip-button">Book Trip</button>
+      <button class="book-trip-estimate-button">Get Estimate</button>
     </form>
   `;
 }
-
-export const showAddedNewTrip = (trip) => {
-  let tripContainer = document.querySelector('.pending-trip-container');
-  
-  if (!tripContainer) {
-    console.error('Pending trip container not found');
-    return;
-  }
-
-  const destination = allDestinationData.find(place => place.id === trip.destinationID);
-  let destinationPic = '';
-
-  if (destination) {
-    destinationPic = destination.image;
-  }
-
-  const tripElement = document.createElement('div');
-  tripElement.classList.add('trip');
-  tripElement.innerHTML = `
-    <img src="${destinationPic}" class="destination-pic" alt="Destination Picture">
-    <p>Date: ${trip.date}</p>
-    <p>Duration: ${trip.duration} days</p>
-    <p>Status: ${trip.status}</p>
-  `;
-  tripContainer.appendChild(tripElement);
-
-  alert('New trip added successfully!');
-};
 
 export const viewPendingTrips = (trips) => {
   const dashContents = document.querySelector('.dashContents');
@@ -132,15 +109,18 @@ export const viewPendingTrips = (trips) => {
   pendingTrips.forEach((trip) => {
     const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
     let destinationPic = '';
+    let destinationName = '';
 
     if (destination) {
       destinationPic = destination.image;
+      destinationName = destination.destination;
     }
 
     const tripElement = document.createElement('div');
     tripElement.classList.add('trip');
     tripElement.innerHTML = `
       <img src="${destinationPic}" class="destination-pic" alt="Destination Picture">
+      <p>"${destinationName}"</p>
       <p>Date: ${trip.date}</p>
       <p>Duration: ${trip.duration} days</p>
       <p>Status: ${trip.status}</p>
@@ -148,3 +128,32 @@ export const viewPendingTrips = (trips) => {
     tripContainer.appendChild(tripElement);
   });
 }
+
+export const displayExpenses = (userId) => {
+  const expenseData = addAllExpense(userId);
+  const totalAmountSpent = expenseData.totalAmountSpent
+  const expenses = expenseData.expenses
+
+  const dashContents = document.querySelector('.dashContents');
+
+  if (totalAmountSpent === 0) {
+    dashContents.innerHTML = `
+      <h2 class="home-expense">Expense Summary for 2022</h2>
+      <p>You didn't go to any places in 2022! <br> Book a trip today!</p>
+    `;
+  } else {
+    dashContents.innerHTML = `
+      <h2 class="home-expense">Expense Summary for 2022</h2>
+      <p>Total amount spent: $${totalAmountSpent}</p>
+      <div class="expense-details"></div>
+    `;
+
+    const expenseDetails = dashContents.querySelector('.expense-details')
+
+    expenses.forEach(expense => {
+      expenseDetails.innerHTML += `
+        <p>You went to ${expense.destinationName} and spent $${expense.totalPrice}</p>
+      `;
+    });
+  }
+};
