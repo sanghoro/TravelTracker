@@ -1,14 +1,12 @@
 //all user related functions here
 
 //imports
-import { fetchAllTripsData, fetchSingleUserData } from './apiCalls';
 import { allUsersData, allTripData, allDestinationData, allSingleUserData } from './initializeDatas';
-import { hideLoginSection, greetUser, viewPastTrips, viewPendingTrips } from './domUpdates.js';
+import { hideLoginSection, greetUser, viewPastTrips, viewPendingTrips, displayUpcomingTrips } from './domUpdates.js';
 import { hideLoginView, showLoginView } from './scripts.js';
 
 //global variables
 let currentUser = null;
-
 
 //functions
 export const handleLogin = (username, password) => {
@@ -21,11 +19,10 @@ export const handleLogin = (username, password) => {
   const userData = allUsersData.find(user => user.id === userId);
   
   if (userData) {
-    currentUser = userData
+    currentUser = userData;
     hideLoginView();
     hideLoginSection();
     greetUser(userData.name)
-    fetchSingleUserData(userId)
     addAllExpense(userId)
   } else {
     alert('Invalid username');
@@ -33,8 +30,21 @@ export const handleLogin = (username, password) => {
 }
 
 export const pastTrips = (userId) => {
-  const tripData = allTripData.filter(user => user.userID === userId)
+  const tripData = allTripData.filter(trip => {
+    const tripDate = new Date(trip.date);
+    const cutoffDate = new Date('2022/07/07');
+    return trip.userID === userId && tripDate < cutoffDate;
+  });
   viewPastTrips(tripData);
+}
+
+export const upcomingTrips = (userId) => {
+  const tripData = allTripData.filter(trip => {
+    const tripDate = new Date(trip.date);
+    const cutoffDate = new Date('2022-07-07');
+    return trip.userID === userId && tripDate >= cutoffDate && trip.status === 'approved';
+  });
+  displayUpcomingTrips(tripData);
 }
 
 export const pendingTrips = (userId) => {
@@ -65,12 +75,12 @@ export const calculateEstimate = () => {
 
 export const addAllExpense = (userId) => {
   const userTrips = allTripData.filter(trip => trip.userID === userId);
-  const tripsIn2022 = userTrips.filter(trip => trip.date.startsWith('2022'));
+  const tripsIn2021 = userTrips.filter(trip => trip.date.startsWith('2021'));
 
   let totalAmountSpent = 0;
   let expenses = [];
 
-  tripsIn2022.forEach(trip => {
+  tripsIn2021.forEach(trip => {
     const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
 
     const flightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
@@ -88,17 +98,7 @@ export const addAllExpense = (userId) => {
     });
 
     totalAmountSpent += totalPrice;
-
-    console.log(`
-      Trip to ${destination.destination}:
-      - Estimated flight cost: $${flightCost}
-      - Estimated lodging cost: $${lodgingCost}
-      - Agent fee (10%): $${agentFee}
-      - Total price: $${totalPrice}
-    `);
   });
-
-  console.log('Total amount spent in 2022:', totalAmountSpent);
   return {totalAmountSpent, expenses}
 };
 

@@ -3,12 +3,12 @@
 
 //I'm storing all buttons related functions in here
 
-import { addNewTrip } from './apiCalls.js';
+import { addNewTrip, fetchSingleUserData } from './apiCalls.js';
 import './css/styles.css';
-import { bookingCalculationForm, displayExpenses, viewPendingTrips } from './domUpdates.js';
+import { bookingCalculationForm, displayExpenses, displayHomeUser, viewPendingTrips } from './domUpdates.js';
 import './images/turing-logo.png';
-import { allDestinationData, fetchAllData, allTripData } from './initializeDatas';
-import { calculateEstimate, handleLogin } from './userFunctions.js';
+import { allDestinationData, fetchAllData, allTripData, userId } from './initializeDatas';
+import { calculateEstimate, handleLogin, upcomingTrips } from './userFunctions.js';
 import { pastTrips, pendingTrips, currentUser } from './userFunctions.js';
 
 // Global Variables
@@ -59,8 +59,6 @@ export function showLoginView() {
 
 // EventListeners
 document.addEventListener('DOMContentLoaded', () => {
-  fetchAllData();
-
   if (loginButton) {
     loginButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -73,18 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
         alert("Please enter your password");
       } else {
         handleLogin(loginID, loginPW);
-        
       }
     });
   }
-
-  // if (turingLogo) {
-  //   turingLogo.addEventListener('click', (e) => {
-  //     e.preventDefault();
-  //     alert("You will be logged out")
-  //     showLoginView();
-  //   });
-  // }
 
   //NAV BAR ICONS
   if (homeButton) {
@@ -93,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const loginID = document.querySelector('input[name="id"]').value;
       const userId = Number(loginID.slice(8));
       displayExpenses(userId);
+      displayHomeUser(userId)
+      upcomingTrips(userId)
     });
   }
 
