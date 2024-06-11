@@ -78,7 +78,7 @@ export const bookingCalculationForm = () => {
         <input type="number" class="travelers" min="1" required>
       </div>
       <div>
-        <label for="destinations">Choose Destination:</label>
+        <label for="destinations">Destination:</label>
         <select class="destinations" required>
           ${sortedDestinationOptions}
         </select>

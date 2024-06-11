@@ -5,7 +5,6 @@ export function fetchAllUserData() {
         return response.json();
       })
       .then(data => {
-        console.log('allData', data.travelers)
         return data.travelers
       })
       .catch(error => {
@@ -30,7 +29,6 @@ export function fetchAllUserData() {
       return response.json();
     })
     .then(data=> {
-      console.log('data trips >>>', data.trips)
       return data.trips
     })
     .catch(error => {
@@ -44,7 +42,6 @@ export function fetchAllUserData() {
       return response.json();
     })
     .then(data=>{
-      console.log('destination datas>>', data.destinations)
       return data.destinations})
     .catch(error => {
       console.error('Warning! Problem with fetching all trips datas from apiCalls:', error);

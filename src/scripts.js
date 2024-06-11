@@ -141,12 +141,14 @@ function handleTripBooking() {
     });
   }
 }
+
 function getEstimate() {
   const estimateButton = document.querySelector('.book-trip-estimate-button');
 
   if (estimateButton) {
     estimateButton.addEventListener('click', (e) => {
       e.preventDefault();
+      
 
       const duration = Number(document.querySelector('.duration').value);
       const travelers = Number(document.querySelector('.travelers').value);
@@ -154,15 +156,12 @@ function getEstimate() {
 
       const estimate = calculateEstimate(duration, travelers, destinationName, allDestinationData);
 
-      if (estimate.error) {
-        alert(estimate.error);
-      } else {
-        alert(`
+      alert(`
           Estimated for flight and lodging: $${estimate.totalEstimate}
           Agent fee of 10% : $${estimate.agentFee}
           The grand total will be : $${estimate.totalPrice}
         `);
-      }
+      
     });
   }
 }
@@ -172,6 +171,10 @@ function submitNewTrip() {
   const duration = document.querySelector('.duration').value;
   const travelers = document.querySelector('.travelers').value;
   const destinationName = document.querySelector('.destinations').value;
+
+  if (!errorHandle()){
+    return;
+  }
 
   const destination = allDestinationData.find(place => place.destination === destinationName);
   const destinationID = destination.id;
@@ -226,4 +229,27 @@ export const addAllExpense = (userId) => {
     totalAmountSpent += totalPrice;
   });
   return {totalAmountSpent, expenses}
+};
+
+const errorHandle = () => {
+  const date = document.querySelector('.trip-date').value;
+  const duration = document.querySelector('.duration').value;
+  const travelers = document.querySelector('.travelers').value;
+  const destinationName = document.querySelector('.destinations').value;
+
+  if (!date) {
+    alert('Please choose a date');
+    return false
+  } else if (!duration) {
+    alert('Please choose a duration');
+    return false
+  } else if (travelers <= 0) {
+    alert('Number of travelers must be more than 0');
+    return false
+  } else if (!destinationName) {
+    alert('Please choose a destination');
+    return false
+  } else {
+    return true;
+  }
 };
