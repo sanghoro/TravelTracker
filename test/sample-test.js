@@ -1,6 +1,5 @@
 import chai from 'chai';
 const expect = chai.expect;
-import { userDataMock } from './allUser-mock';
 import { tripDataMock } from './allDataTrip-mock';
 import { destinationDataMock } from './allDestination-mock';
 import { pastTrips, pendingTrips, upcomingTrips, calculateEstimate } from '../src/functions';
@@ -35,24 +34,24 @@ describe('Past Trips', () => {
         status: "approved",
         suggestedActivities: []
       }
-    ]);
+    ])
   });
 
 
   it('should return an empty array if there is no approved trips', () => {
     const result = pastTrips(2, tripDataMock);
     expect(result).to.deep.equal([]);
-  });
+  })
 
   it('should return empty array if no trips for the unknown user are found', () => {
     const result = pastTrips(7, tripDataMock);
     expect(result).to.deep.equal([]);
-  });
+  })
 
   it('should return emtpy array for invalid user ID', () => {
     const result = pastTrips('invalidID', tripDataMock);
     expect(result).to.deep.equal([]);
-  });
+  })
 
 });
 
@@ -91,21 +90,21 @@ describe('Pending Trips', () => {
     suggestedActivities: []
   }
     ]);
-  });
+  })
   it('should return an empty array if no pending trips are found', () => {
     const result = pendingTrips(2, tripDataMock);
     expect(result).to.deep.equal([]);
-  });
+  })
 
   it('should return an empty array if no pending trips for unknown user', () => {
     const result = pendingTrips(7, tripDataMock);
     expect(result).to.deep.equal([]);
-  });
+  })
 
   it('should return empty array for an invalid userID', () => {
     const result = pendingTrips('invalidID', tripDataMock);
     expect(result).to.deep.equal([]);
-  });
+  })
 });
 
 describe('Upcoming Trips Function', () => {
@@ -138,17 +137,17 @@ describe('Upcoming Trips Function', () => {
   it('should return an empty array if there is no upcoming trips', () => {
     const result = upcomingTrips(2, tripDataMock);
     expect(result).to.deep.equal([]);
-  });
+  })
 
   it('should return an empty array if there is no trips for unknown users', () => {
     const result = upcomingTrips(7, tripDataMock);
     expect(result).to.deep.equal([]);
-  });
+  })
 
   it('should return an empty array for an invalid userID', () => {
     const result = upcomingTrips('invalidID', tripDataMock);
     expect(result).to.deep.equal([]);
-  });
+  })
 });
 
 
@@ -159,7 +158,7 @@ describe('Calculate Estimate Function', () => {
       totalEstimate: 110,
       agentFee: 11,
       totalPrice: 121
-    });
+    })
   });
 
   it('should correctly calculate the estimate for another destination, duration, and travelers', () => {
@@ -168,7 +167,7 @@ describe('Calculate Estimate Function', () => {
       totalEstimate: 2200,
       agentFee: 220,
       totalPrice: 2420
-    });
+    })
   });
   it('should handle zero duration correctly', () => {
     const result = calculateEstimate(0, 3, "Lima, Peru", destinationDataMock);
@@ -176,7 +175,7 @@ describe('Calculate Estimate Function', () => {
       totalEstimate: 300,
       agentFee: 30,
       totalPrice: 330
-    });
+    })
   });
 
-});
+})

@@ -1,3 +1,4 @@
+//functions
 export const pastTrips = (userId, tripsDataset) => {
     return tripsDataset.filter(trip => trip.userID === userId && trip.status === 'approved');
     };

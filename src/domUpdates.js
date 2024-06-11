@@ -1,4 +1,3 @@
-//only DOM updating functions here
 //imports
 import { allDestinationData, allUsersData } from "./initializeDatas";
 import { addAllExpense } from "./scripts";

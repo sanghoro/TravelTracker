@@ -1,5 +1,3 @@
-//all user login related functions here
-
 //imports
 import { allUsersData, allTripData, allDestinationData } from './initializeDatas';
 import { hideLoginSection, greetUser, viewPastTrips, viewPendingTrips, displayUpcomingTrips } from './domUpdates.js';

@@ -1,9 +1,5 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-//I'm storing all buttons related functions in here
-
-import { addNewTrip, fetchSingleUserData } from './apiCalls.js';
+//imports
+import { addNewTrip} from './apiCalls.js';
 import './css/styles.css';
 import { bookingCalculationForm, displayExpenses, displayHomeUser, viewPendingTrips, viewPastTrips, displayUpcomingTrips } from './domUpdates.js';
 import { allDestinationData, fetchAllData, allTripData, userId } from './initializeDatas';

@@ -5,8 +5,6 @@ let allTripData = [];
 let allDestinationData = [];
 let allSingleUserData = [];
 
-// export const userId = Number(document.querySelector('input[name="id"]').value.slice(8));
-
 export const fetchAllData = () => {
   Promise.all([fetchAllUserData(), fetchSingleUserData(1), fetchAllTripsData(), fetchAllDestinationData()])
     .then(([allUserDataResult, singleUserDataResult, allTripsDataResult, allDestinationDataResult]) => {
@@ -16,8 +14,8 @@ export const fetchAllData = () => {
       allSingleUserData = singleUserDataResult;
     })
     .catch(error => {
-      console.error("Error fetching data:", error);
-    });
+      console.error("Error fetching data from initializeDatas.js:", error);
+    })
 };
 
 fetchAllData();
