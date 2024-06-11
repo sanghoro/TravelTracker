@@ -55,7 +55,7 @@ export const bookingCalculationForm = () => {
     <form class="booking-form">
       <div>
         <label for="trip-date">Select Date:</label>
-        <input type="date" class="trip-date" required>
+        <input type="date" class="trip-date" min="2022-07-08" required>
       </div>
       <div>
         <label for="duration">Duration (days):</label>

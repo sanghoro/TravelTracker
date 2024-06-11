@@ -44,6 +44,12 @@ header nav {
 }
 
 /* LOGIN SECTION */
+.loginText,
+.PWText {
+  font-weight: 777;
+  margin-right: 10px;
+}
+
 .login-form {
   display: flex;
   align-items: center;
