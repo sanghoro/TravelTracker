@@ -1,5 +1,3 @@
-//only fetching functions
-
 //Fetch
 export function fetchAllUserData() {
     return fetch("http://localhost:3001/api/v1/travelers")
@@ -7,11 +5,10 @@ export function fetchAllUserData() {
         return response.json();
       })
       .then(data => {
-        console.log('allData', data.travelers)
         return data.travelers
       })
       .catch(error => {
-        console.error('Warning! Problem with fetching all users datas:', error);
+        console.error('Warning! Problem with fetching all users datas from apiCalls:', error);
       });
   }
 
@@ -22,7 +19,7 @@ export function fetchAllUserData() {
         return data;
       })
       .catch(error => {
-        console.error('Warning! Problem with fetching single user data:', error);
+        console.error('Warning! Problem with fetching single user data from apiCalls:', error);
       });
   }
 
@@ -32,11 +29,10 @@ export function fetchAllUserData() {
       return response.json();
     })
     .then(data=> {
-      console.log('data trips >>>', data.trips)
       return data.trips
     })
     .catch(error => {
-      console.error('Warning! Problem with fetching all trips datas:', error);
+      console.error('Warning! Problem with fetching all trips datas from apiCalls:', error);
     });
   }
 
@@ -46,10 +42,9 @@ export function fetchAllUserData() {
       return response.json();
     })
     .then(data=>{
-      console.log('destination datas>>', data.destinations)
       return data.destinations})
     .catch(error => {
-      console.error('Warning! Problem with fetching all trips datas:', error);
+      console.error('Warning! Problem with fetching all trips datas from apiCalls:', error);
     });
   }
 
@@ -68,6 +63,6 @@ export function fetchAllUserData() {
       return data;
     })
     .catch(error => {
-      console.error('Error adding new trip:', error);
+      console.error('Warning! Problem posting new trip from apiCalls:', error);
     });
   }

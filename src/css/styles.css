@@ -21,23 +21,20 @@ body {
 
 header {
   width: 100%;
-  height: 100%;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background-color: rgba(255, 255, 255, 0.2);
+  position: relative;
 }
 
-.turing-logo {
-  width: 70px;
-  height: 70px;
-  padding-left: 50px;
-  cursor: pointer;
-}
-
-.turing-logo:hover {
-  filter: brightness(150%);
+.current-date {
+  color: rgb(57, 57, 57);
+  position: absolute;
+  right: 60px;
+  top: 90px;
 }
 
 header nav {
@@ -186,7 +183,7 @@ main {
   margin-top: 25px;
   text-align: center;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 30px;
   font-size: 19px;
   margin-right: 15px;
   height: 7vh;
@@ -218,6 +215,34 @@ main {
   transform: scale(1.5);
   transition: transform 0.3s ease;
   filter: brightness(120%);
+}
+
+/* Home */
+.search-button {
+  box-shadow: rgb(111, 110, 111) 0px 5px 10px;
+  padding: 20px;
+  background-color: #236805;
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #034e02;
+}
+
+.HomeOne,
+.HomeTwo {
+  background-color: #f5f6f7;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  height: 20vh;
+}
+
+.expense-details {
+  margin-top: 10px;
 }
 
 /* Past Trips */
@@ -271,6 +296,7 @@ main {
   border: none;
 }
 
+.book-trip-estimate-button,
 .book-trip-button {
   margin-top: 20px;
   font-size: 20px;
@@ -280,6 +306,7 @@ main {
   box-shadow: rgb(111, 110, 111) 0px 5px 10px;
 }
 
+.book-trip-estimate-button:hover,
 .book-trip-button:hover {
   filter: brightness(125%);
   transform: scale(1.2);

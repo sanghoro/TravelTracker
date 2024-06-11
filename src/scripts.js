@@ -1,15 +1,11 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-//I'm storing all buttons related functions in here
-
-import { addNewTrip } from './apiCalls.js';
+//imports
+import { addNewTrip} from './apiCalls.js';
 import './css/styles.css';
-import { bookingCalculationForm, displayExpenses, viewPendingTrips } from './domUpdates.js';
-import './images/turing-logo.png';
-import { allDestinationData, fetchAllData, allTripData } from './initializeDatas';
-import { calculateEstimate, handleLogin } from './userFunctions.js';
-import { pastTrips, pendingTrips, currentUser } from './userFunctions.js';
+import { bookingCalculationForm, displayExpenses, displayHomeUser, viewPendingTrips, viewPastTrips, displayUpcomingTrips } from './domUpdates.js';
+import { allDestinationData, fetchAllData, allTripData, userId } from './initializeDatas';
+import { handleLogin, currentUser } from './userFunctions.js';
+import { pastTrips, pendingTrips, upcomingTrips,calculateEstimate} from './functions.js';
+
 
 // Global Variables
 const loginBoxOne = document.querySelector('.LoginBoxOne');
@@ -19,7 +15,6 @@ const loginBoxFour = document.querySelector('.LoginBoxFour');
 const loginView = document.getElementById('loginView');
 const dashView = document.getElementById('dashView');
 const loginButton = document.querySelector('.LoginButton');
-const turingLogo = document.querySelector('.turing-logo');
 const homeButton = document.querySelector('.navButton1');
 const bookButton = document.querySelector('.navButton2');
 const pendingButton = document.querySelector('.navButton3');
@@ -57,10 +52,20 @@ export function showLoginView() {
   }
 }
 
+export const hideLoginSection = () => {
+  const idInput = document.querySelector('.id');
+  const pwInput = document.querySelector('.password');
+  const loginButton = document.querySelector('.LoginButton');
+  const logoutButton = document.querySelector('.LogOutButton');
+
+  idInput.classList.add('hide');
+  pwInput.classList.add('hide');
+  loginButton.classList.add('hide');
+  logoutButton.classList.remove('hidden');
+};
+
 // EventListeners
 document.addEventListener('DOMContentLoaded', () => {
-  fetchAllData();
-
   if (loginButton) {
     loginButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -73,18 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
         alert("Please enter your password");
       } else {
         handleLogin(loginID, loginPW);
-        
       }
     });
   }
-
-  // if (turingLogo) {
-  //   turingLogo.addEventListener('click', (e) => {
-  //     e.preventDefault();
-  //     alert("You will be logged out")
-  //     showLoginView();
-  //   });
-  // }
 
   //NAV BAR ICONS
   if (homeButton) {
@@ -92,7 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const loginID = document.querySelector('input[name="id"]').value;
       const userId = Number(loginID.slice(8));
+      const upcomingTripsData = upcomingTrips(userId, allTripData);
       displayExpenses(userId);
+      displayHomeUser(userId)
+      displayUpcomingTrips(upcomingTripsData)
     });
   }
 
@@ -110,7 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const loginID = document.querySelector('input[name="id"]').value;
       const userId = Number(loginID.slice(8));
-      pendingTrips(userId);
+      const tripData = pendingTrips(userId, allTripData); 
+      viewPendingTrips(tripData); 
     });
   }
 
@@ -119,7 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const loginID = document.querySelector('input[name="id"]').value;
       const userId = Number(loginID.slice(8));
-      pastTrips(userId);
+      const trips = pastTrips(userId, allTripData);
+      viewPastTrips(trips);
     });
   }
 
@@ -151,14 +152,28 @@ function handleTripBooking() {
     });
   }
 }
-function getEstimate(){
-  const estimateButton = document.querySelector('.book-trip-estimate-button')
 
-  if(estimateButton){
+function getEstimate() {
+  const estimateButton = document.querySelector('.book-trip-estimate-button');
+
+  if (estimateButton) {
     estimateButton.addEventListener('click', (e) => {
       e.preventDefault();
-      calculateEstimate();
-    })
+      
+
+      const duration = Number(document.querySelector('.duration').value);
+      const travelers = Number(document.querySelector('.travelers').value);
+      const destinationName = document.querySelector('.destinations').value;
+
+      const estimate = calculateEstimate(duration, travelers, destinationName, allDestinationData);
+
+      alert(`
+          Estimated for flight and lodging: $${estimate.totalEstimate}
+          Agent fee of 10% : $${estimate.agentFee}
+          The grand total will be : $${estimate.totalPrice}
+        `);
+      
+    });
   }
 }
 
@@ -167,6 +182,10 @@ function submitNewTrip() {
   const duration = document.querySelector('.duration').value;
   const travelers = document.querySelector('.travelers').value;
   const destinationName = document.querySelector('.destinations').value;
+
+  if (!errorHandle()){
+    return;
+  }
 
   const destination = allDestinationData.find(place => place.destination === destinationName);
   const destinationID = destination.id;
@@ -193,3 +212,55 @@ function submitNewTrip() {
     }
   });
 }
+
+export const addAllExpense = (userId) => {
+  const userTrips = allTripData.filter(trip => trip.userID === userId);
+  const tripsIn2021 = userTrips.filter(trip => trip.date.startsWith('2021'));
+
+  let totalAmountSpent = 0;
+  let expenses = [];
+
+  tripsIn2021.forEach(trip => {
+    const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
+
+    const flightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
+    const lodgingCost = destination.estimatedLodgingCostPerDay * trip.duration * trip.travelers;
+    const totalEstimate = flightCost + lodgingCost;
+    const agentFee = totalEstimate * 0.10;
+    const totalPrice = totalEstimate + agentFee;
+
+    expenses.push({
+      destinationName: destination.destination,
+      flightCost,
+      lodgingCost,
+      agentFee,
+      totalPrice
+    });
+
+    totalAmountSpent += totalPrice;
+  });
+  return {totalAmountSpent, expenses}
+};
+
+const errorHandle = () => {
+  const date = document.querySelector('.trip-date').value;
+  const duration = document.querySelector('.duration').value;
+  const travelers = document.querySelector('.travelers').value;
+  const destinationName = document.querySelector('.destinations').value;
+
+  if (!date) {
+    alert('Please choose a date');
+    return false
+  } else if (!duration) {
+    alert('Please choose a duration');
+    return false
+  } else if (travelers <= 0) {
+    alert('Number of travelers must be more than 0');
+    return false
+  } else if (!destinationName) {
+    alert('Please choose a destination');
+    return false
+  } else {
+    return true;
+  }
+};
