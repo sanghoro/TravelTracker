@@ -16,7 +16,7 @@ export const tripDataMock = [
       travelers: 5,
       date: "2022/10/04",
       duration: 7,
-      status: "pending",
+      status: "approved",
       suggestedActivities: []
     },
     {
@@ -36,7 +36,7 @@ export const tripDataMock = [
       travelers: 2,
       date: "2022/02/25",
       duration: 4,
-      status: "approved",
+      status: "pending",
       suggestedActivities: []
     },
     {
@@ -46,7 +46,7 @@ export const tripDataMock = [
       travelers: 3,
       date: "2022/04/30",
       duration: 5,
-      status: "approved",
+      status: "pending",
       suggestedActivities: []
     }
   ];
