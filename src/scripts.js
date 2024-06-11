@@ -57,11 +57,15 @@ export const hideLoginSection = () => {
   const pwInput = document.querySelector('.password');
   const loginButton = document.querySelector('.LoginButton');
   const logoutButton = document.querySelector('.LogOutButton');
+  const idLetters = document.querySelector('.ID-Letter');
+  const pwLetters = document.querySelector('.PW-Letter')
 
   idInput.classList.add('hide');
   pwInput.classList.add('hide');
   loginButton.classList.add('hide');
   logoutButton.classList.remove('hidden');
+  idLetters.classList.add('hide');
+  pwLetters.classList.add('hide')
 };
 
 // EventListeners

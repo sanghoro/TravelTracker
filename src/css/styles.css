@@ -44,6 +44,13 @@ header nav {
 }
 
 /* LOGIN SECTION */
+.ID-Letter,
+.PW-Letter {
+  margin-right: 10px;
+  font-weight: 777;
+  font-size: 17px;
+}
+
 .login-form {
   display: flex;
   align-items: center;

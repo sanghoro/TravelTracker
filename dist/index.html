@@ -18,8 +18,12 @@
       <div class="current-date"> Today's date: 2022/07/07</div>
     </div>
     <form class="login-form">
-      <input class="id" type="text" placeholder="ID" name="id">
-      <input class="password" type="password" placeholder="Password" name="password">
+      <label for="id" class="ID-Letter">ID</label>
+      <input class="id" type="text" placeholder="ID" name="id" id="username">
+
+      <label for="password" class="PW-Letter">PASSWORD</label>
+      <input class="password" type="password" placeholder="Password" name="password" id="password">
+
       <button type="submit" class="LoginButton" id="loginButton">Login</button>
       <button type="submit" class="LogOutButton hidden" id="logOutButton">Log Out</button>
     </form>
