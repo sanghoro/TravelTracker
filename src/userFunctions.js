@@ -1,7 +1,7 @@
 //imports
 import { allUsersData, allTripData, allDestinationData } from './initializeDatas';
-import { hideLoginSection, greetUser, viewPastTrips, viewPendingTrips, displayUpcomingTrips } from './domUpdates.js';
-import { addAllExpense, hideLoginView, showLoginView } from './scripts.js';
+import { greetUser, viewPastTrips, viewPendingTrips, displayUpcomingTrips } from './domUpdates.js';
+import { addAllExpense, hideLoginSection, hideLoginView, showLoginView } from './scripts.js';
 
 //global variables
 let currentUser = null;
@@ -26,11 +26,6 @@ export const handleLogin = (username, password) => {
     alert('Invalid username');
   }
 }
-
-
-
-
-
 
 //Exports
 export { currentUser };

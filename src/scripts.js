@@ -15,7 +15,6 @@ const loginBoxFour = document.querySelector('.LoginBoxFour');
 const loginView = document.getElementById('loginView');
 const dashView = document.getElementById('dashView');
 const loginButton = document.querySelector('.LoginButton');
-const turingLogo = document.querySelector('.turing-logo');
 const homeButton = document.querySelector('.navButton1');
 const bookButton = document.querySelector('.navButton2');
 const pendingButton = document.querySelector('.navButton3');
@@ -52,6 +51,18 @@ export function showLoginView() {
     dashView.classList.add('hide');
   }
 }
+
+export const hideLoginSection = () => {
+  const idInput = document.querySelector('.id');
+  const pwInput = document.querySelector('.password');
+  const loginButton = document.querySelector('.LoginButton');
+  const logoutButton = document.querySelector('.LogOutButton');
+
+  idInput.classList.add('hide');
+  pwInput.classList.add('hide');
+  loginButton.classList.add('hide');
+  logoutButton.classList.remove('hidden');
+};
 
 // EventListeners
 document.addEventListener('DOMContentLoaded', () => {
