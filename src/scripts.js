@@ -5,11 +5,11 @@
 
 import { addNewTrip, fetchSingleUserData } from './apiCalls.js';
 import './css/styles.css';
-import { bookingCalculationForm, displayExpenses, displayHomeUser, viewPendingTrips } from './domUpdates.js';
-import './images/turing-logo.png';
+import { bookingCalculationForm, displayExpenses, displayHomeUser, viewPendingTrips, viewPastTrips, displayUpcomingTrips } from './domUpdates.js';
 import { allDestinationData, fetchAllData, allTripData, userId } from './initializeDatas';
-import { calculateEstimate, handleLogin, upcomingTrips } from './userFunctions.js';
-import { pastTrips, pendingTrips, currentUser } from './userFunctions.js';
+import { handleLogin, currentUser, addAllExpense } from './userFunctions.js';
+import { pastTrips, pendingTrips, upcomingTrips,calculateEstimate} from './functions.js';
+
 
 // Global Variables
 const loginBoxOne = document.querySelector('.LoginBoxOne');
@@ -81,9 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const loginID = document.querySelector('input[name="id"]').value;
       const userId = Number(loginID.slice(8));
+      const upcomingTripsData = upcomingTrips(userId, allTripData);
       displayExpenses(userId);
       displayHomeUser(userId)
-      upcomingTrips(userId)
+      displayUpcomingTrips(upcomingTripsData)
     });
   }
 
@@ -101,7 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const loginID = document.querySelector('input[name="id"]').value;
       const userId = Number(loginID.slice(8));
-      pendingTrips(userId);
+      const tripData = pendingTrips(userId, allTripData); // Pass the necessary data
+      viewPendingTrips(tripData); // Update the view with the filtered trips
     });
   }
 
@@ -110,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const loginID = document.querySelector('input[name="id"]').value;
       const userId = Number(loginID.slice(8));
-      pastTrips(userId);
+      const trips = pastTrips(userId, allTripData);
+      viewPastTrips(trips);
     });
   }
 
@@ -142,14 +145,29 @@ function handleTripBooking() {
     });
   }
 }
-function getEstimate(){
-  const estimateButton = document.querySelector('.book-trip-estimate-button')
+function getEstimate() {
+  const estimateButton = document.querySelector('.book-trip-estimate-button');
 
-  if(estimateButton){
+  if (estimateButton) {
     estimateButton.addEventListener('click', (e) => {
       e.preventDefault();
-      calculateEstimate();
-    })
+
+      const duration = Number(document.querySelector('.duration').value);
+      const travelers = Number(document.querySelector('.travelers').value);
+      const destinationName = document.querySelector('.destinations').value;
+
+      const estimate = calculateEstimate(duration, travelers, destinationName, allDestinationData);
+
+      if (estimate.error) {
+        alert(estimate.error);
+      } else {
+        alert(`
+          Estimated for flight and lodging: $${estimate.totalEstimate}
+          Agent fee of 10% : $${estimate.agentFee}
+          The grand total will be : $${estimate.totalPrice}
+        `);
+      }
+    });
   }
 }
 

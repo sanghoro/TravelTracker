@@ -38,45 +38,5 @@ export const destinationDataMock = [
       estimatedLodgingCostPerDay: 150,
       image: "sampleimage",
       alt: "Plaza Mayor in Madrid"
-    },
-    {
-      id: 6,
-      destination: "Jakarta, Indonesia",
-      estimatedFlightCostPerPerson: 850,
-      estimatedLodgingCostPerDay: 70,
-      image: "sampleimage",
-      alt: "Jakarta city skyline"
-    },
-    {
-      id: 7,
-      destination: "Paris, France",
-      estimatedFlightCostPerPerson: 650,
-      estimatedLodgingCostPerDay: 100,
-      image: "sampleimage",
-      alt: "Eiffel Tower in Paris"
-    },
-    {
-      id: 8,
-      destination: "Tokyo, Japan",
-      estimatedFlightCostPerPerson: 1200,
-      estimatedLodgingCostPerDay: 125,
-      image: "sampleimage",
-      alt: "Shibuya Crossing in Tokyo"
-    },
-    {
-      id: 9,
-      destination: "Amsterdam, Netherlands",
-      estimatedFlightCostPerPerson: 750,
-      estimatedLodgingCostPerDay: 100,
-      image: "sampleimage",
-      alt: "canals of Amsterdam"
-    },
-    {
-      id: 10,
-      destination: "Toronto, Canada",
-      estimatedFlightCostPerPerson: 500,
-      estimatedLodgingCostPerDay: 90,
-      image: "sampleimage",
-      alt: "Toronto skyline with CN Tower"
-    },
+    }
   ];

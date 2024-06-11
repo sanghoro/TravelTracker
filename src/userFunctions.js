@@ -1,7 +1,7 @@
-//all user related functions here
+//all user login related functions here
 
 //imports
-import { allUsersData, allTripData, allDestinationData, allSingleUserData } from './initializeDatas';
+import { allUsersData, allTripData, allDestinationData } from './initializeDatas';
 import { hideLoginSection, greetUser, viewPastTrips, viewPendingTrips, displayUpcomingTrips } from './domUpdates.js';
 import { hideLoginView, showLoginView } from './scripts.js';
 
@@ -29,48 +29,8 @@ export const handleLogin = (username, password) => {
   }
 }
 
-export const pastTrips = (userId) => {
-  const tripData = allTripData.filter(trip => {
-    const tripDate = new Date(trip.date);
-    const cutoffDate = new Date('2022/07/07');
-    return trip.userID === userId && tripDate < cutoffDate;
-  });
-  viewPastTrips(tripData);
-}
 
-export const upcomingTrips = (userId) => {
-  const tripData = allTripData.filter(trip => {
-    const tripDate = new Date(trip.date);
-    const cutoffDate = new Date('2022-07-07');
-    return trip.userID === userId && tripDate >= cutoffDate && trip.status === 'approved';
-  });
-  displayUpcomingTrips(tripData);
-}
 
-export const pendingTrips = (userId) => {
-  const tripData = allTripData.filter(user => user.userID === userId)
-  viewPendingTrips(tripData);
-}
-
-export const calculateEstimate = () => {
-  const duration = document.querySelector('.duration').value;
-  const travelers = document.querySelector('.travelers').value;
-  const destinationName = document.querySelector('.destinations').value;
-
-  const getDestinationInfo = allDestinationData.find(destin => destin.destination === destinationName)
-
-  const totalFlight = getDestinationInfo.estimatedFlightCostPerPerson * travelers;
-  const totalLodging = getDestinationInfo.estimatedLodgingCostPerDay * duration;
-  const totalEstimate = totalFlight + totalLodging;
-  const agentFee = (totalEstimate / 10)
-  const totalPrice = totalEstimate + agentFee;
-
-  alert(`
-      Estimated for flight and lodging: $${totalEstimate}
-      Agent fee of 10% : $${agentFee}
-      The grand total will be : $${totalPrice}
-    `)
-}
 
 
 export const addAllExpense = (userId) => {

@@ -2,6 +2,7 @@
 //imports
 import { allDestinationData, allUsersData } from "./initializeDatas";
 import { addAllExpense } from "./userFunctions";
+// import { addAllExpense } from "./functions";
 
 //functions
 export const hideLoginSection = () => {
@@ -32,24 +33,23 @@ export const viewPastTrips = (trips) => {
   const tripContainer = dashContents.querySelector('.trip-container');
   
   trips.forEach((trip) => {
-    if (trip.status === 'approved') {
-      const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
-      let destinationPic = '';
+    const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
+    let destinationPic = '';
 
-      if (destination) {
-        destinationPic = destination.image;
-      }
-
-      const tripElement = document.createElement('div');
-      tripElement.classList.add('trip');
-      tripElement.innerHTML = `
-        <img src="${destinationPic}" class="destination-pic" alt="Destination Picture">
-        <p>Date: ${trip.date}</p>
-        <p>Duration: ${trip.duration} days</p>
-        <p>Status: ${trip.status}</p>
-      `;
-      tripContainer.appendChild(tripElement);
+    if (destination) {
+      destinationPic = destination.image;
     }
+
+    const tripElement = document.createElement('div');
+    tripElement.classList.add('trip');
+    tripElement.innerHTML = `
+      <img src="${destinationPic}" class="destination-pic" alt="Destination Picture">
+      <p>Destination: ${destination.destination}</p>
+      <p>Date: ${trip.date}</p>
+      <p>Duration: ${trip.duration} days</p>
+      <p>Status: ${trip.status}</p>
+    `;
+    tripContainer.appendChild(tripElement);
   });
 };
 
@@ -146,7 +146,7 @@ export const displayHomeUser = (userId) => {
 };
 
 export const displayExpenses = (userId) => {
-  const expenseData = addAllExpense(userId);
+  const expenseData = addAllExpense(userId)
   const totalAmountSpent = expenseData.totalAmountSpent;
   const expenses = expenseData.expenses;
 
