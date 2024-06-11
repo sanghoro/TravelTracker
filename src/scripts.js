@@ -7,7 +7,7 @@ import { addNewTrip, fetchSingleUserData } from './apiCalls.js';
 import './css/styles.css';
 import { bookingCalculationForm, displayExpenses, displayHomeUser, viewPendingTrips, viewPastTrips, displayUpcomingTrips } from './domUpdates.js';
 import { allDestinationData, fetchAllData, allTripData, userId } from './initializeDatas';
-import { handleLogin, currentUser, addAllExpense } from './userFunctions.js';
+import { handleLogin, currentUser } from './userFunctions.js';
 import { pastTrips, pendingTrips, upcomingTrips,calculateEstimate} from './functions.js';
 
 
@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const loginID = document.querySelector('input[name="id"]').value;
       const userId = Number(loginID.slice(8));
-      const tripData = pendingTrips(userId, allTripData); // Pass the necessary data
-      viewPendingTrips(tripData); // Update the view with the filtered trips
+      const tripData = pendingTrips(userId, allTripData); 
+      viewPendingTrips(tripData); 
     });
   }
 
@@ -202,3 +202,32 @@ function submitNewTrip() {
     }
   });
 }
+
+export const addAllExpense = (userId) => {
+  const userTrips = allTripData.filter(trip => trip.userID === userId);
+  const tripsIn2021 = userTrips.filter(trip => trip.date.startsWith('2021'));
+
+  let totalAmountSpent = 0;
+  let expenses = [];
+
+  tripsIn2021.forEach(trip => {
+    const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
+
+    const flightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
+    const lodgingCost = destination.estimatedLodgingCostPerDay * trip.duration * trip.travelers;
+    const totalEstimate = flightCost + lodgingCost;
+    const agentFee = totalEstimate * 0.10;
+    const totalPrice = totalEstimate + agentFee;
+
+    expenses.push({
+      destinationName: destination.destination,
+      flightCost,
+      lodgingCost,
+      agentFee,
+      totalPrice
+    });
+
+    totalAmountSpent += totalPrice;
+  });
+  return {totalAmountSpent, expenses}
+};

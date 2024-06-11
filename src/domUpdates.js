@@ -1,8 +1,8 @@
 //only DOM updating functions here
 //imports
 import { allDestinationData, allUsersData } from "./initializeDatas";
-import { addAllExpense } from "./userFunctions";
-// import { addAllExpense } from "./functions";
+import { addAllExpense } from "./scripts";
+
 
 //functions
 export const hideLoginSection = () => {

@@ -3,7 +3,7 @@
 //imports
 import { allUsersData, allTripData, allDestinationData } from './initializeDatas';
 import { hideLoginSection, greetUser, viewPastTrips, viewPendingTrips, displayUpcomingTrips } from './domUpdates.js';
-import { hideLoginView, showLoginView } from './scripts.js';
+import { addAllExpense, hideLoginView, showLoginView } from './scripts.js';
 
 //global variables
 let currentUser = null;
@@ -32,35 +32,6 @@ export const handleLogin = (username, password) => {
 
 
 
-
-export const addAllExpense = (userId) => {
-  const userTrips = allTripData.filter(trip => trip.userID === userId);
-  const tripsIn2021 = userTrips.filter(trip => trip.date.startsWith('2021'));
-
-  let totalAmountSpent = 0;
-  let expenses = [];
-
-  tripsIn2021.forEach(trip => {
-    const destination = allDestinationData.find(dest => dest.id === trip.destinationID);
-
-    const flightCost = destination.estimatedFlightCostPerPerson * trip.travelers;
-    const lodgingCost = destination.estimatedLodgingCostPerDay * trip.duration * trip.travelers;
-    const totalEstimate = flightCost + lodgingCost;
-    const agentFee = totalEstimate * 0.10;
-    const totalPrice = totalEstimate + agentFee;
-
-    expenses.push({
-      destinationName: destination.destination,
-      flightCost,
-      lodgingCost,
-      agentFee,
-      totalPrice
-    });
-
-    totalAmountSpent += totalPrice;
-  });
-  return {totalAmountSpent, expenses}
-};
 
 
 //Exports
