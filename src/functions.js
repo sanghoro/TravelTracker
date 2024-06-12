@@ -1,7 +1,11 @@
 //functions
 export const pastTrips = (userId, tripsDataset) => {
-    return tripsDataset.filter(trip => trip.userID === userId && trip.status === 'approved');
-    };
+    const cutoffDate = new Date('2022/07/07');
+    return tripsDataset.filter(trip => {
+        const tripDate = new Date(trip.date);
+        return trip.userID === userId && trip.status === 'approved' && tripDate < cutoffDate;
+    });
+};
 
 export const pendingTrips = (userId, tripsDataset) => {
     return tripsDataset.filter(trip => trip.userID === userId && trip.status === 'pending');

@@ -13,28 +13,7 @@ describe('See if the tests are running', function() {
 describe('Past Trips', () => {
   it('should return only approved trips for the user', () => {
     const result = pastTrips(1, tripDataMock);
-    expect(result).to.deep.equal([
-      {
-        id: 1,
-        userID: 1,
-        destinationID: 49,
-        travelers: 1,
-        date: "2022/09/16",
-        duration: 8,
-        status: "approved",
-        suggestedActivities: []
-      },
-      {
-        id: 2,
-        userID: 1,
-        destinationID: 25,
-        travelers: 5,
-        date: "2022/10/04",
-        duration: 7,
-        status: "approved",
-        suggestedActivities: []
-      }
-    ])
+    expect(result).to.deep.equal([])
   });
 
 
@@ -169,6 +148,7 @@ describe('Calculate Estimate Function', () => {
       totalPrice: 2420
     })
   });
+
   it('should handle zero duration correctly', () => {
     const result = calculateEstimate(0, 3, "Lima, Peru", destinationDataMock);
     expect(result).to.deep.equal({
