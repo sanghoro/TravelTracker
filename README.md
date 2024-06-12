@@ -4,6 +4,7 @@
   -Travel Tracker is an application that helps users plan, track, and manage their trips! Users can log in, view past and upcoming trips, book new trips, and calculate travel estimates. I used HTML, CSS, and JavaScript! Enjoy.
   
 ## Preview
+![TravelTracker_Kang-ezgif com-resize (1)](https://github.com/sanghoro/TravelTracker/assets/159068651/5d21f1ac-6ffb-447c-891e-6be9454c04cc)
 
 ## Installation Instructions
   -clone down the repository onto your local machine using git clone https://github.com/sanghoro/TravelTracker. 
