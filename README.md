@@ -28,6 +28,7 @@
 
 ## Context
 This project was assigned on 06JUN2024 and was completed by 11JUN2024.
+It was evaluated on 12JUN2024, and resulted in a solid pass!
 
 ## Pre-Planning
 Used Github Project for Pre-planning. [here](https://github.com/users/sanghoro/projects/9/views/2)
