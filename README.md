@@ -11,9 +11,10 @@
 </div>
 
 ## Preview
-![Screenshot 2024-06-11 at 9 22 36 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/48a3415f-9b46-4bce-9d17-b011c3457890)
-![Screenshot 2024-06-11 at 9 21 56 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/dba37e79-a300-4d0e-a6b6-05c0be3c48be)
 
+![Screenshot 2024-06-11 at 9 51 14 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/a3107f9b-c81a-4af9-a88c-8524bddb1b29)
+
+![Screenshot 2024-06-11 at 9 51 32 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/4ac88c58-36ec-4563-a0f0-d878ab75a084)
 
 
 ## Installation Instructions
