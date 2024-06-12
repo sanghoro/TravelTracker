@@ -7,8 +7,6 @@
   </div>
   <div style="flex: 1; text-align: center;">
     <img src="https://github.com/sanghoro/TravelTracker/assets/159068651/313b31aa-2515-4fc4-bcda-5c80699b9ab9" alt="Travel Tracker Preview" style="width: 100%; max-width: 300px;">
-    <img src="https://github.com/sanghoro/TravelTracker/assets/159068651/48a3415f-9b46-4bce-9d17-b011c3457890" alt="Screenshot 1" style="width: 100%; max-width: 300px;">
-    <img src="https://github.com/sanghoro/TravelTracker/assets/159068651/dba37e79-a300-4d0e-a6b6-05c0be3c48be" alt="Screenshot 2" style="width: 100%; max-width: 300px;">
   </div>
 </div>
 
