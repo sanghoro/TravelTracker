@@ -7,11 +7,12 @@
 ![TravelTracker_Kang-ezgif com-resize (1)](https://github.com/sanghoro/TravelTracker/assets/159068651/5d21f1ac-6ffb-447c-891e-6be9454c04cc)
 
 ## Installation Instructions
-  * clone down the repository onto your local machine using git clone https://github.com/sanghoro/TravelTracker. 
+  * clone down the repository onto your local machine using git "clone https://github.com/sanghoro/TravelTracker" 
   * Once cloned down, cd into the direction and install dependencies by running npm install.
   * Get the backend server running by following the instructions using the instructions in this README: Backend Server
   * Once the backend server is running, run "git pull origin iteration2/feat-fetchData" to pull down changes from the branch.
   * Run npm start then visit the local host to view the application in your browser.
+  * You can use ID of traveler## (## can be from 1-50), and PW of travel.
 
 ## Context
 This project was assigned on 06JUN2024 and was completed by 11JUN2024.
