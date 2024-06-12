@@ -14,9 +14,6 @@
 
 ![Screenshot 2024-06-11 at 9 51 14 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/a3107f9b-c81a-4af9-a88c-8524bddb1b29)
 
-![Screenshot 2024-06-11 at 9 51 32 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/4ac88c58-36ec-4563-a0f0-d878ab75a084)
-
-
 ## Installation Instructions
   * clone down the repository onto your local machine using <br>
 "git clone https://github.com/sanghoro/TravelTracker" 
