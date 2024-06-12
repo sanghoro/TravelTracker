@@ -17,7 +17,8 @@
 
 
 ## Installation Instructions
-  * clone down the repository onto your local machine using git "clone https://github.com/sanghoro/TravelTracker" 
+  * clone down the repository onto your local machine using 
+"git clone https://github.com/sanghoro/TravelTracker" 
   * Once cloned down, cd into the direction and install dependencies by running npm install.
   * Get the backend server running by following the instructions using the instructions in this [README: Backend Server](https://github.com/turingschool-examples/webpack-starter-kit)
   * Once the backend server is running, run "git pull origin iteration2/feat-fetchData" to pull down changes from the branch.
