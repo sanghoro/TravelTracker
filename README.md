@@ -32,6 +32,8 @@ Used Github Project for Pre-planning. [here](https://github.com/users/sanghoro/p
 ![Project Sketch -1](https://github.com/sanghoro/TravelTracker/assets/159068651/2014a1dc-0657-4279-b756-01a080f0262e)
 ![Project Sketch -2](https://github.com/sanghoro/TravelTracker/assets/159068651/0668f4e8-ab4e-4417-a8d7-45894f473f1f)
 ![Screenshot 2024-06-10 at 4 26 43 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/363a2b05-2ca2-4d6f-bfff-7ffb5e86f4d9)
+![Screenshot 2024-06-11 at 9 32 35 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/2d9ab876-c65e-47c9-908d-ca9806d4a1c7)
+
 
 ## Learning Goals
   * To practice FETCH and POST: understand and implement GET/POST requests from the backend.
