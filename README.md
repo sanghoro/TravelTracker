@@ -36,6 +36,9 @@ Used Github Project for Pre-planning. [here](https://github.com/users/sanghoro/p
 ![Screenshot 2024-06-10 at 4 26 43 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/363a2b05-2ca2-4d6f-bfff-7ffb5e86f4d9)
 ![Screenshot 2024-06-11 at 9 32 35 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/2d9ab876-c65e-47c9-908d-ca9806d4a1c7)
 
+## Data Flowchart
+![DataFlowChart](https://github.com/sanghoro/TravelTracker/assets/159068651/4686fcbe-8814-45e9-a2c2-1342de818731)
+
 
 ## Learning Goals
   * To practice FETCH and POST: understand and implement GET/POST requests from the backend.
@@ -44,14 +47,19 @@ Used Github Project for Pre-planning. [here](https://github.com/users/sanghoro/p
   * Version control: using Github to make myself comfortable with workflow
   
 ## Challenges
-  * Handling data with FETCH and POST: Using Poromise.all to fetch data requests and process them was still challenging to me, however, I plan to hone my skills over the two week break.
+  * Handling data with FETCH and POST: Using Promise.all to fetch data requests and process them was still challenging to me, however, I plan to hone my skills over the two week break.
   * Dynamic UI updates: It was challenging to design/research/try out multiple layouts to make the best of UI design
   * Decoupling functions from dependencies: I had to separate some functions that were fetching datas directly from the backend dataset. I have spent 10+ hours on restructuring and decoupling functions and make them indirectly access the backend dataset. It was exhausting, but definitely worth it.
   
 ## Wins
   * I managed to create a user-friendly interface with various CSS styles, making the application look appealing.
   * I almost gave up on separating the functions from their dependencies because I was nearly done with the project, my internet was out most of the day, and there was construction noise in my apartment. But I didn’t give up, and I pushed through to get it done.
+  * Resulted in excellent accessibility tested with both wave and lighthouse
+![Screenshot 2024-06-12 at 2 25 47 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/a87cfb70-a4a5-491c-b895-c7fed00d1a39)
+![Screenshot 2024-06-12 at 2 25 25 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/6126ace4-1513-49a9-8f42-0c95b5392c38)
 
+
+    
 ## Special Thanks to
   * [Charles](https://github.com/KojinKuro) for always being willing to help, guide, and teach me better ways to improve!
   * [Reese](https://github.com/reesegreen2014) for dedicating his time and effort to carefully review my projects and provide valuable feedback.
