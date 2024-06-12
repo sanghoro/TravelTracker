@@ -1,11 +1,18 @@
 # Travel Tracker
 
 ## Abstract
-  * Travel Tracker is an application that helps users plan, track, and manage their trips! Users can log in, view past and upcoming trips, book new trips, and calculate travel estimates. I used HTML, CSS, and JavaScript! Enjoy.
-  
-## Preview
-![TravelTracker_Kang-ezgif com-resize (1)](https://github.com/sanghoro/TravelTracker/assets/159068651/313b31aa-2515-4fc4-bcda-5c80699b9ab9)
+<div style="display: flex; align-items: flex-start;">
+  <div style="flex: 1;">
+    <p>Travel Tracker is an application that helps users plan, track, and manage their trips! Users can log in, view past and upcoming trips, book new trips, and calculate travel estimates. I used HTML, CSS, and JavaScript! Enjoy.</p>
+  </div>
+  <div style="flex: 1; text-align: center;">
+    <img src="https://github.com/sanghoro/TravelTracker/assets/159068651/313b31aa-2515-4fc4-bcda-5c80699b9ab9" alt="Travel Tracker Preview" style="width: 100%; max-width: 300px;">
+    <img src="https://github.com/sanghoro/TravelTracker/assets/159068651/48a3415f-9b46-4bce-9d17-b011c3457890" alt="Screenshot 1" style="width: 100%; max-width: 300px;">
+    <img src="https://github.com/sanghoro/TravelTracker/assets/159068651/dba37e79-a300-4d0e-a6b6-05c0be3c48be" alt="Screenshot 2" style="width: 100%; max-width: 300px;">
+  </div>
+</div>
 
+## Preview
 ![Screenshot 2024-06-11 at 9 22 36 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/48a3415f-9b46-4bce-9d17-b011c3457890)
 ![Screenshot 2024-06-11 at 9 21 56 PM](https://github.com/sanghoro/TravelTracker/assets/159068651/dba37e79-a300-4d0e-a6b6-05c0be3c48be)
 be9454c04cc)
