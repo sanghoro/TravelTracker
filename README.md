@@ -39,4 +39,5 @@ Used Github Project for Pre-planning. [here](https://github.com/users/sanghoro/p
   * I almost gave up on separating the functions from their dependencies because I was nearly done with the project, my internet was out most of the day, and there was construction noise in my apartment. But I didn’t give up, and I pushed through to get it done.
 
 ## Special Thanks to
+  * [Charles](https://github.com/KojinKuro) for always being willing to help, guide, and teach me better ways to improve!
   * [Reese](https://github.com/reesegreen2014) for dedicating his time and effort to carefully review my projects and provide valuable feedback.
